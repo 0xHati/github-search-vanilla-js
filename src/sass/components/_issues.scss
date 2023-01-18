@@ -1,0 +1,76 @@
+.open-issues {
+  &__item {
+    flex-wrap: wrap;
+  }
+
+  &__left {
+  }
+
+  &__user-image {
+    border-radius: 50%;
+    background-color: var(--color-accent-1);
+    width: 3rem;
+    height: 3rem;
+    margin-right: 2rem;
+  }
+
+  &__content {
+    flex: 1;
+    margin-bottom: 1rem;
+    // flex-direction: column;
+  }
+  &__title {
+    margin-bottom: 1rem;
+  }
+  &__description {
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  &__bottom {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    @include media(">tablet") {
+      flex-direction: column;
+    }
+  }
+  &__tags {
+    flex-wrap: wrap;
+    font-size: 1.4rem;
+
+    @include media(">tablet") {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+
+  &__tag {
+    border: solid 1px var(--color-accent-2);
+    border-radius: 1rem;
+    padding: 0.1rem 0.4rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+
+    &:hover {
+      transform: scale(1.02);
+      cursor: pointer;
+    }
+  }
+
+  &__dates {
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+    font-size: 1.2rem;
+    font-weight: 200;
+    min-width: fit-content;
+  }
+
+  &__date {
+  }
+}

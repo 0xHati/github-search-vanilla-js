@@ -1,0 +1,26 @@
+.activities {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__user-image {
+    border-radius: 50%;
+    background-color: var(--color-accent-1);
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &__name {
+  }
+
+  &__type {
+    color: var(--color-secondary);
+    font-weight: 500;
+  }
+  &__date {
+    font-size: 1.2rem;
+    font-weight: 200;
+  }
+}

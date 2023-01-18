@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/css/main.css" />
+    <script type="module" defer src="src/js/controller.js"></script>
+
+    <title>Github Project Overview</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="searchbar-container--top">
+        <form class="search search--large">
+          <button class="search__button" type="submit">
+            <svg class="search__icon">
+              <use href="src/img/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <div class="search__input-container">
+            <input type="search" class="search__input" placeholder="search a repository" />
+            <svg class="search__icon-close">
+              <use href="src/img/sprite.svg#close"></use>
+            </svg>
+          </div>
+          <button class="search__button">
+            <svg class="search__icon">
+              <use href="src/img/sprite.svg#options"></use>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </nav>
+    <main class="result-container">
+      <div class="searchresult">
+        <div class="searchresult__info">
+          <p><span class="searchresult__amount">40</span>&nbsp;repositories found</p>
+          <span class="searchresult__sort">sort: best match &darr;</span>
+        </div>
+        <ul class="searchresult__items">
+          <template class="searchresult__template">
+            <li class="searchresult__item">
+              <div class="left">
+                <div class="searchresult__title">Tetris</div>
+                <div class="searchresult__description">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quibusdam, incidunt libero obcaecati accusantium ex
+                  laudantium. Qui doloribus consequatur exercitationem nostrum voluptate natus ipsam recusandae.
+                </div>
+
+                <div class="searchresult__repository-info">
+                  <div class="repository__element">
+                    <svg class="repository__icon">
+                      <use href="src/img/sprite.svg#star"></use>
+                    </svg>
+                    <span class="respository__star-count">35.k</span>
+                  </div>
+                  <div class="repository__element">
+                    <svg class="repository__icon">
+                      <use href="src/img/sprite.svg#repo-forked"></use>
+                    </svg>
+                    <span class="respository__fork-count">1.2k</span>
+                  </div>
+                  <div class="repository__element">
+                    <svg class="repository__icon">
+                      <use href="src/img/sprite.svg#person"></use>
+                    </svg>
+                    <span>2.7k</span>
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+                <div class="repository__element">
+                  <img
+                    src="./src/img/language-icons-sprite.svg#img-javascript-original"
+                    alt="language icon"
+                    class="repository__icon repository__language-icon" />
+                  <span class="repository__language">javascript</span>
+                </div>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>

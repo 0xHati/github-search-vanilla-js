@@ -1,0 +1,12 @@
+{
+  "name": "github-star-tracker",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel *.html",
+    "build": "parcel build *.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.2",
+    "sass": "^1.57.1"
+  }
+}

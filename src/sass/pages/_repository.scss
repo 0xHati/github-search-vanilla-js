@@ -1,0 +1,39 @@
+main {
+  //   justify-content: space-between;
+}
+
+.repository-container {
+  @include media(">desktop") {
+    display: flex;
+  }
+
+  @include media(">desktop") {
+    margin: 0 5rem;
+  }
+}
+
+.main-content {
+  margin-bottom: 4rem;
+
+  @include media(">tablet") {
+    margin-bottom: 8rem;
+  }
+
+  @include media(">desktop") {
+    flex: 0 0 70%;
+    padding-right: 4rem;
+  }
+
+  @include media(">big-desktop") {
+    flex: 0 0 70%;
+  }
+}
+
+.sidebar {
+  // flex: 1;
+
+  @include media(">desktop") {
+    display: flex;
+    flex-direction: column;
+  }
+}

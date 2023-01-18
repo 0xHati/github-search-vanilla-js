@@ -1,0 +1,25 @@
+/**
+ * Basic typography style for copy text
+ */
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  font-size: 1.6rem;
+}
+
+.heading-secondary,
+.heading-tertiary {
+  background: linear-gradient(45deg, var(--color-accent-2) 0, var(--color-secondary-light-3) 50%);
+  // background: conic-gradient(from 0 at 25% 25%, #f5d6a3 0, #e69c24 360deg);
+  color: transparent;
+  background-clip: text;
+
+  // background-image: conic-gradient(var(--color-secondary), var(--color-secondary-light-2));
+  // background-image: conic-gradient(from 180deg at 50% 50%, #e69c24 0deg, #fff 360deg);
+  // background-size: 100%;
+  // background-repeat: repeat;
+  // color: var(--color-secondary-light-2);
+
+  text-transform: uppercase;
+}

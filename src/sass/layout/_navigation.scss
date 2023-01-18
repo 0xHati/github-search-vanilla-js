@@ -1,0 +1,24 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+// .navbar {
+//   flex: 1;
+//   @include media(">tablet") {
+//     flex-basis: 85%;
+//   }
+
+//   @include media(">desktop") {
+//     flex: 0 0 75%;
+//     width: 75%;
+//   }
+
+//   @include media(">big-desktop") {
+//     flex: 0 0 65%;
+
+//     width: 65%;
+//   }
+// }

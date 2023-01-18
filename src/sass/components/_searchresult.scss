@@ -1,0 +1,86 @@
+.searchresult {
+  cursor: pointer;
+  flex: 1;
+
+  &__info {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+
+    @include media(">tablet") {
+      margin-bottom: 4rem;
+    }
+  }
+
+  &__amount {
+  }
+
+  &__sort {
+  }
+
+  &__items {
+  }
+  &__item {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
+    margin-bottom: 1rem;
+
+    &:not(:last-child)::after {
+      content: "";
+      @include border-bottom-gradient;
+      width: 100%;
+      position: absolute;
+    }
+
+    & > * > *:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+
+    @include media(">tablet") {
+      margin-bottom: 2rem;
+    }
+  }
+  &__number {
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 1.8rem;
+  }
+  &__description {
+    font-weight: 300;
+  }
+  &__language {
+  }
+
+  &__repository-info {
+    display: flex;
+    gap: 4rem;
+    padding-bottom: 1.5rem;
+
+    @include media(">tablet") {
+      padding-bottom: 2rem;
+    }
+  }
+}
+
+.searchresult__item {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+}
+
+.left {
+}
+
+.right {
+  align-self: center;
+}
+
+.repository__language-icon {
+  width: 4rem;
+  height: 4rem;
+}

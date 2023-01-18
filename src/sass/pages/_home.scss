@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+
+.searchbar-container--center {
+  // display: flex;
+  // justify-content: center;
+  display: flex;
+  min-height: 100vh;
+
+  justify-content: center;
+  align-items: center;
+}

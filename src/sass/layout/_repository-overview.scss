@@ -1,0 +1,127 @@
+.repository {
+  margin-bottom: 4rem;
+  & > * {
+    margin-bottom: 2rem;
+  }
+  &__title {
+    font-weight: 500;
+    border-bottom: solid 2px var(--color-secondary-light-2);
+    border-image: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-light-3)) 1;
+
+    display: inline-block;
+    padding-bottom: 1rem;
+    letter-spacing: 0.1rem;
+
+    font-size: 2rem;
+  }
+
+  &__description {
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: var(--color-secondary);
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+    @include media(">desktop") {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+
+  &__stats {
+    display: flex;
+    font-size: 1.4rem;
+    font-weight: 300;
+    flex-wrap: wrap;
+
+    @include media(">tablet") {
+      flex-wrap: nowrap;
+      // justify-content: space-between;
+      align-items: center;
+    }
+
+    @include media(">desktop") {
+    }
+
+    @include media(">big-desktop") {
+    }
+  }
+  &__block {
+    $border: 2px;
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: space-around;
+    background-clip: padding-box;
+    background: inherit;
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.2rem;
+
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: inherit;
+      border: solid $border transparent;
+      background: var(--border-gradient) border-box;
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask-composite: destination-out;
+      mask-composite: exclude;
+    }
+    @include media(">tablet") {
+      flex: 0 0 40%;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-right: 4rem;
+    }
+
+    @include media(">desktop") {
+    }
+
+    @include media(">big-desktop") {
+    }
+  }
+  &__element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 10%;
+
+    :not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    max-width: fit-content;
+    border: solid 1px var(--color-accent-2);
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+
+    &:not(:last-child) {
+      margin-right: 0.8rem;
+
+      @include media(">tablet") {
+        margin-right: 4rem;
+      }
+
+      @include media(">desktop") {
+      }
+
+      @include media(">big-desktop") {
+      }
+    }
+  }
+}

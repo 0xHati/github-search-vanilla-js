@@ -1,0 +1,65 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  @include media(">tablet") {
+    flex-direction: row;
+  }
+
+  @include media(">desktop") {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  & > *:not(:last-child) {
+    @include media(">tablet") {
+      margin-right: 5rem;
+    }
+    @include media(">desktop") {
+      margin-right: 0;
+    }
+  }
+}
+
+.sidebar-container {
+  margin-bottom: 4rem;
+
+  &__activity {
+    @include media(">tablet") {
+      flex: 0 0 40%;
+    }
+  }
+
+  &__issues {
+    @include media(">tablet") {
+      flex: 1;
+    }
+  }
+
+  @include media(">desktop") {
+    margin-bottom: 2rem;
+  }
+}
+
+.sidebar-container > .heading-tertiary {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.sidebar-container > ul > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  position: relative;
+  border-bottom: 1px solid transparent;
+
+  &:not(:last-child)::after {
+    content: "";
+    @include border-bottom-gradient;
+    opacity: 50%;
+    width: 50%;
+    position: absolute;
+    right: 25%;
+  }
+}

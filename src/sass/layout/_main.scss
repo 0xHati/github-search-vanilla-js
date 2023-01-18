@@ -1,0 +1,21 @@
+.respository-container,
+.result-container {
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include media(">tablet") {
+    // flex: 0 0 85%;
+    flex-basis: 85%;
+  }
+
+  @include media(">desktop") {
+    margin-top: 4rem;
+    flex-basis: 75%;
+  }
+
+  @include media(">big-desktop") {
+    flex-basis: 65%;
+  }
+}

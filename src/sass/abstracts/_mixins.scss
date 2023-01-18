@@ -1,0 +1,10 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+@mixin border-bottom-gradient {
+  border-image: var(--border-gradient) 2;
+  // border-bottom: 1px solid var(--color-divider-light);
+  border-bottom: 1px solid;
+  bottom: 0;
+}
