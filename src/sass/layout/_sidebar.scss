@@ -9,6 +9,12 @@
   @include media(">desktop") {
     flex-direction: column;
     margin: 0;
+    flex-basis: 40%;
+  }
+
+  @include media(">big-desktop") {
+    flex-direction: column;
+    flex-basis: 25%;
   }
 
   & > *:not(:last-child) {
@@ -19,47 +25,36 @@
       margin-right: 0;
     }
   }
-}
 
-.sidebar-container {
-  margin-bottom: 4rem;
+  &__item {
+    margin-bottom: 4rem;
+    flex: 1;
 
-  &__activity {
-    @include media(">tablet") {
-      flex: 0 0 40%;
+    @include media(">desktop") {
+      margin-bottom: 2rem;
     }
   }
 
-  &__issues {
-    @include media(">tablet") {
-      flex: 1;
+  &__item > .heading-tertiary {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  &__item > ul > li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    position: relative;
+    border-bottom: 1px solid transparent;
+
+    &:not(:last-child)::after {
+      content: "";
+      @include border-bottom-gradient;
+      opacity: 50%;
+      width: 50%;
+      position: absolute;
+      right: 25%;
     }
-  }
-
-  @include media(">desktop") {
-    margin-bottom: 2rem;
-  }
-}
-
-.sidebar-container > .heading-tertiary {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.sidebar-container > ul > li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 0;
-  position: relative;
-  border-bottom: 1px solid transparent;
-
-  &:not(:last-child)::after {
-    content: "";
-    @include border-bottom-gradient;
-    opacity: 50%;
-    width: 50%;
-    position: absolute;
-    right: 25%;
   }
 }

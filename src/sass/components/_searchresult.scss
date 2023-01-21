@@ -1,33 +1,38 @@
 .searchresult {
-  cursor: pointer;
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  @include media(">tablet") {
+    flex-basis: 75%;
+  }
+
+  @include media(">desktop") {
+    display: flex;
+    justify-content: center;
+    width: 65%;
+    flex-basis: 65%;
+  }
 
   &__info {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     font-size: 1.4rem;
     font-weight: 300;
     margin-bottom: 2rem;
+    position: relative;
 
     @include media(">tablet") {
       margin-bottom: 4rem;
     }
   }
 
-  &__amount {
-  }
-
-  &__sort {
-  }
-
-  &__items {
-  }
   &__item {
     display: flex;
     position: relative;
     justify-content: space-between;
     border-bottom: 1px solid transparent;
     margin-bottom: 1rem;
+    gap: 4rem;
 
     &:not(:last-child)::after {
       content: "";
@@ -43,17 +48,23 @@
     @include media(">tablet") {
       margin-bottom: 2rem;
     }
+
+    &-left {
+      flex: 1;
+    }
+
+    &-right {
+      align-self: center;
+      flex: 0 0 15%;
+    }
   }
-  &__number {
-  }
+
   &__title {
     font-weight: 500;
     font-size: 1.8rem;
   }
   &__description {
     font-weight: 300;
-  }
-  &__language {
   }
 
   &__repository-info {
@@ -67,20 +78,7 @@
   }
 }
 
-.searchresult__item {
-  display: flex;
-  flex-direction: row;
-  gap: 4rem;
-}
-
-.left {
-}
-
-.right {
-  align-self: center;
-}
-
-.repository__language-icon {
+.repository__icon--big {
   width: 4rem;
   height: 4rem;
 }

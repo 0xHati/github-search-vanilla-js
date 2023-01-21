@@ -25,11 +25,12 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(to right bottom, var(--color-background-dark-1) 0%, var(--color-background-dark-2) 100%);
+  background-image: var(--background-gradient);
   background-size: cover;
   background-repeat: no-repeat;
   margin: 2rem 2rem;
@@ -37,4 +38,23 @@ body {
 
 ul {
   list-style: none;
+}
+
+select {
+  appearance: none;
+  border: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+  color: inherit;
+  background-color: transparent;
+}
+
+option {
+  appearance: none;
+  color: inherit;
+  background-color: var(--color-accent-1);
 }

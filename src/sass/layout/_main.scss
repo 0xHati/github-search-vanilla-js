@@ -1,21 +1,14 @@
-.respository-container,
-.result-container {
-  display: flex;
-  // flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.main-content {
+  margin-bottom: 4rem;
 
   @include media(">tablet") {
-    // flex: 0 0 85%;
-    flex-basis: 85%;
+    margin-bottom: 8rem;
   }
 
   @include media(">desktop") {
-    margin-top: 4rem;
-    flex-basis: 75%;
+    padding-right: 4rem;
   }
 
   @include media(">big-desktop") {
-    flex-basis: 65%;
   }
 }

@@ -11,3 +11,42 @@ button {
   cursor: pointer;
   outline: inherit;
 }
+
+.btn {
+  border: 1px solid var(--color-accent-1-light);
+  border-radius: 1rem;
+  padding: 0.1rem 1rem;
+  position: relative;
+  overflow: hidden;
+  color: currentColor;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background: var(--background-gradient);
+    transform: translateX(100%);
+    transition: all 0.4s ease-in-out;
+  }
+
+  &:not(&--disabled):hover {
+    border-color: var(--color-accent-3);
+  }
+
+  &:not(&--disabled):hover::after {
+    transform: translateX(0%);
+  }
+  &:not(&--disabled):hover > * {
+    fill: var(--color-primary);
+  }
+
+  &--disabled {
+    opacity: 30%;
+    cursor: default;
+  }
+}

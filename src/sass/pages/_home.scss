@@ -2,12 +2,40 @@
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
 
-.searchbar-container--center {
-  // display: flex;
-  // justify-content: center;
+main {
   display: flex;
-  min-height: 100vh;
-
   justify-content: center;
   align-items: center;
+  @include media(">tablet") {
+    flex: 0 0 85%;
+  }
+
+  @include media(">desktop") {
+    flex: 0 0 75%;
+  }
+
+  @include media(">big-desktop") {
+    flex: 0 0 65%;
+  }
 }
+
+// repository 'page'
+
+.repository-container {
+  display: none;
+  @include media(">desktop") {
+    display: flex;
+    justify-content: center;
+  }
+}
+//search result 'page'
+
+// .searchresult-container {
+//   flex: 1;
+//   display: none;
+
+//   @include media(">desktop") {
+//     display: flex;
+//     justify-content: center;
+//   }
+// }

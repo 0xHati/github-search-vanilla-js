@@ -35,55 +35,79 @@
         </form>
       </div>
     </nav>
-    <main class="result-container">
+    <main>
       <div class="searchresult">
         <div class="searchresult__info">
           <p><span class="searchresult__amount">40</span>&nbsp;repositories found</p>
-          <span class="searchresult__sort">sort: best match &darr;</span>
+
+          <div class="dropdown">
+            <div class="searchresult__sort dropdown__label">
+              sort: <span class="dropdown__default">best match</span>
+
+              <svg class="dropdown__icon">
+                <use href="src/img/sprite.svg#chevron-down"></use>
+              </svg>
+            </div>
+
+            <ul class="dropdown__list" id="searchresult-sort" role="listbox">
+              <li class="dropdown__item dropdown__item--selected" role="listitem">best match</li>
+              <li class="dropdown__item" role="listitem">stars</li>
+              <li class="dropdown__item" role="listitem">forks</li>
+              <li class="dropdown__item" role="listitem">help-wanted-issues</li>
+              <li class="dropdown__item" role="listitem">updated</li>
+            </ul>
+          </div>
         </div>
         <ul class="searchresult__items">
-          <template class="searchresult__template">
-            <li class="searchresult__item">
-              <div class="left">
-                <div class="searchresult__title">Tetris</div>
-                <div class="searchresult__description">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quibusdam, incidunt libero obcaecati accusantium ex
-                  laudantium. Qui doloribus consequatur exercitationem nostrum voluptate natus ipsam recusandae.
-                </div>
-
-                <div class="searchresult__repository-info">
-                  <div class="repository__element">
-                    <svg class="repository__icon">
-                      <use href="src/img/sprite.svg#star"></use>
-                    </svg>
-                    <span class="respository__star-count">35.k</span>
-                  </div>
-                  <div class="repository__element">
-                    <svg class="repository__icon">
-                      <use href="src/img/sprite.svg#repo-forked"></use>
-                    </svg>
-                    <span class="respository__fork-count">1.2k</span>
-                  </div>
-                  <div class="repository__element">
-                    <svg class="repository__icon">
-                      <use href="src/img/sprite.svg#person"></use>
-                    </svg>
-                    <span>2.7k</span>
-                  </div>
-                </div>
+          <li class="searchresult__item">
+            <div class="searchresult__item-left">
+              <div class="searchresult__title">Tetris</div>
+              <div class="searchresult__description">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium quibusdam, incidunt libero obcaecati accusantium ex laudantium.
+                Qui doloribus consequatur exercitationem nostrum voluptate natus ipsam recusandae.
               </div>
-              <div class="right">
+              <div class="searchresult__repository-info">
                 <div class="repository__element">
-                  <img
-                    src="./src/img/language-icons-sprite.svg#img-javascript-original"
-                    alt="language icon"
-                    class="repository__icon repository__language-icon" />
-                  <span class="repository__language">javascript</span>
+                  <svg class="repository__icon">
+                    <use href="src/img/sprite.svg#star"></use>
+                  </svg>
+                  <span class="respository__star-count">35.k</span>
+                </div>
+                <div class="repository__element">
+                  <svg class="repository__icon">
+                    <use href="src/img/sprite.svg#repo-forked"></use>
+                  </svg>
+                  <span class="respository__fork-count">1.2k</span>
+                </div>
+                <div class="repository__element">
+                  <svg class="repository__icon">
+                    <use href="src/img/sprite.svg#person"></use>
+                  </svg>
+                  <span>2.7k</span>
                 </div>
               </div>
-            </li>
-          </template>
+            </div>
+            <div class="searchresult__item-right">
+              <div class="repository__element">
+                <img alt="language icon" class="repository__icon repository__icon--big" />
+                <span class="repository__language">javascript</span>
+              </div>
+            </div>
+          </li>
         </ul>
+        <div class="pagination">
+          <button class="pagination__previous btn btn--disabled">
+            <svg class="pagination__icon">
+              <use href="src/img/sprite.svg#arrow-left-thick"></use>
+            </svg>
+          </button>
+          <p class="pagination__current-page">Current page: <span class="pagination__page">1</span></p>
+          <button class="pagination__next btn">
+            <svg class="pagination__icon">
+              <use href="src/img/sprite.svg#arrow-right-thick"></use>
+            </svg>
+          </button>
+        </div>
       </div>
     </main>
   </body>

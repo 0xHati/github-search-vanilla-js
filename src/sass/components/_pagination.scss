@@ -1,0 +1,29 @@
+.pagination {
+  --background-gradient: linear-gradient(45deg, rgba(37, 174, 248, 30%) 0%, rgba(3, 79, 119, 30%) 100%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.1rem 1rem;
+
+  &__current-page {
+    font-size: 1.2rem;
+    word-spacing: 0.2rem;
+    font-weight: 300;
+  }
+
+  &__next {
+    &::after {
+      transform: translateX(-100%);
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    fill: #25aef8;
+    margin: auto;
+  }
+}

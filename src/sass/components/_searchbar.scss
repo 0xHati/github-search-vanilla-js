@@ -5,6 +5,13 @@
   flex: 1;
 }
 
+.searchbar-container--center {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
 .search {
   display: flex;
   align-items: center;
@@ -86,6 +93,10 @@
         height: 2.5rem;
       }
     }
+  }
+
+  @include media(">tablet") {
+    flex: 0 0 75%;
   }
 
   @include media(">desktop") {

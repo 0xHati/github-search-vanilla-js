@@ -11,15 +11,22 @@
   --color-divider-light: #ffeccc;
 
   --color-accent-1: #034f77;
+  --color-accent-1-light: #25aef880;
   --color-accent-1-dark: #022f47;
+  --color-accent-3: #25aef8;
 
   --color-accent-2: #a56d12;
 
   // --color-background-dark-2: rgba(3, 66, 99, 1);
   // --color-background-dark-1: rgba(2, 47, 71, 0.57);
 
+  //#54b3c8
+
   --color-background-dark-1: #022537;
   --color-background-dark-2: #011018;
 
   --border-gradient: linear-gradient(45deg, var(--color-accent-2), var(--color-accent-1));
+  --background-gradient: linear-gradient(to right bottom, var(--color-background-dark-1) 0%, var(--color-background-dark-2) 100%);
+
+  --border-radius: 1rem;
 }
