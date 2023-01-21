@@ -9,13 +9,13 @@ class SearchView extends View {
   }
 
   addHandlerSearch(handler) {
-    this._searchForm.addEventListener("submit", this._handlerSearch.bind(this, handler));
+    this._searchForm.addEventListener("submit", this._handlerSearch.bind(this, handler, true));
   }
 
-  _handlerSearch(handler, e) {
+  _handlerSearch(handler, newSearch, e) {
     e.preventDefault();
     // TODO: now the searchbar will be moved to top independently if it's a valid search
-    handler();
+    handler(newSearch);
   }
 
   renderSearchBarTop() {

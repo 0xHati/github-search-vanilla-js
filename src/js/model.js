@@ -12,36 +12,31 @@ export let state = {
     totalCount: "",
     sort: "best-match",
   },
+  repository: {},
 };
 
-export const searchRepository = async function (query, page = 1, sort = "best-match", newSearch = true) {
+export const searchRepositories = async function (query, page = 1, sort = "best-match", newSearch = true) {
   state.search.query = query;
   state.search.currentPage = page;
   state.search.sort = sort;
   if (newSearch) state.search.result = [];
 
-  try {
-    const response = await fetch(
-      API_URL + `/search/repositories?q=${state.search.query}&page=${page}&per_page=${RES_PER_PAGE}&sort=${state.search.sort}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${API_TOKEN}`,
-        },
-      }
-    );
+  const data = await makeRequest(
+    API_URL + `/search/repositories?q=${state.search.query}&page=${page}&per_page=${RES_PER_PAGE}&sort=${state.search.sort}`
+  );
 
-    const data = await response.json();
-    state.search.totalCount = data.total_count;
-    state.search.totalPages = Math.ceil(state.search.totalCount / RES_PER_PAGE);
+  state.search.totalCount = data.total_count;
+  state.search.totalPages = Math.ceil(state.search.totalCount / RES_PER_PAGE);
 
-    state.search.result.push({ page: state.search.currentPage, data: data.items });
-    state.search.currentPageResult = data.items;
+  state.search.result.push({ page: state.search.currentPage, data: data.items });
+  state.search.currentPageResult = data.items;
 
-    saveState();
-  } catch (err) {
-    throw err;
-  }
+  saveState();
+};
+
+export const getRepository = async function (owner, name) {
+  const data = await makeRequest(API_URL + `/repos/${owner}/${name}`);
+  state.repository = data;
 };
 
 const saveState = function () {
@@ -55,3 +50,17 @@ export const loadState = function () {
 export function getResultByPage(page) {
   return state.search.result.find((i) => i.page === page);
 }
+
+const makeRequest = async function (endpoint) {
+  try {
+    const response = await fetch(endpoint, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_TOKEN}`,
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    throw err;
+  }
+};

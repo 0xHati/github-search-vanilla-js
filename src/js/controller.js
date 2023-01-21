@@ -2,69 +2,49 @@ import searchView from "./views/searchView";
 import searchResultView from "./views/searchResultView";
 import * as model from "./model";
 import PaginationView from "./views/paginationView";
+import repositoryView from "./views/repositoryView";
 
 let paginationViewSearch;
 
-const controlSearchResults = async function () {
-  const query = searchView.getQuery();
-  if (query === "") return;
-  // move searchbar to top
-  searchView.renderSearchBarTop();
-  // fetch search results
-  await model.searchRepository(query);
+const controlSearchResults = async function (newSearch, page = 0) {
+  if (newSearch) {
+    const query = searchView.getQuery();
+    if (query === "") return;
+    searchView.renderSearchBarTop();
 
-  //render search reults
+    await model.searchRepositories(query);
+  }
+  if (!newSearch) {
+    await model.searchRepositories(model.state.search.query, model.state.search.currentPage + page, model.state.search.sort, false);
+  }
 
   searchResultView.render(model.state.search);
-
-  // render pagination component
-  if (model.state.search.totalCount != 0) {
-    // otherwise a new event gets added everytime a new search happens
-    if (!paginationViewSearch) {
-      paginationViewSearch = new PaginationView(searchResultView, "search");
-      paginationViewSearch.addHandlerClick(controlPagination);
-    }
-    paginationViewSearch.render(model.state.search);
-  }
 };
 
+//TODO: is controlSearchResult
 const controlSort = async function (sort) {
-  await model.searchRepository(model.state.search.query, 1, sort);
+  await model.searchRepositories(model.state.search.query, 1, sort);
   searchResultView.render(model.state.search);
-
-  // render pagination component
-  if (model.state.search.totalCount != 0) {
-    // otherwise a new event gets added everytime a new search happens
-    if (!paginationViewSearch) {
-      paginationViewSearch = new PaginationView(searchResultView, "search");
-      paginationViewSearch.addHandlerClick(controlPagination);
-    }
-    paginationViewSearch.render(model.state.search);
-  }
 };
 
-const controlPagination = async function (parentView, paginationView, page) {
-  //get new data (current page -+ what we get back from the view)
-  // model.getResultByPage(model.state.search.currentPage + page)
+const controlSelectRepository = async function (owner, name) {
+  await model.getRepository(owner, name);
+  repositoryView.render(model.state.repository);
 
-  //TODO: need to make modular in future
-  console.log(model.state.search.currentPage);
-  await model.searchRepository(model.state.search.query, model.state.search.currentPage + page, model.state.search.sort, false);
-
-  //render new results
-  // containerView.render();
-  parentView.render(model.state.search);
-  paginationView.render(model.state.search);
-
-  // update pagination, need a way based on which container or view is calling which data to update, can be with a dataset attribute
-  // that dataset attribute can be used in model to identify the correct method that needs to be called
-  // function that will be called when  button previous or next is pressed
+  // render respository overview
+  // repositoryView.render()
 };
 
 const init = function () {
   model.loadState();
   searchView.addHandlerSearch(controlSearchResults);
+  searchResultView.addHandlerPagination(controlSearchResults);
+
   searchResultView.addHandlerSort(controlSort);
+  searchResultView.addHandlerSelectRepository(controlSelectRepository);
+
+  //TODO: can use the controlSearch because a new page is basically a new search,
+  // set parameter newSearch to False to make a check in the funciton
 };
 
 init();

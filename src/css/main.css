@@ -719,6 +719,7 @@ button {
   border-bottom: 1px solid transparent;
   margin-bottom: 1rem;
   gap: 4rem;
+  cursor: pointer;
 }
 .searchresult__item:not(:last-child)::after {
   content: "";

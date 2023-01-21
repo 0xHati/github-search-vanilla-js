@@ -7,15 +7,13 @@ export default class PaginationView {
     this._name = name;
   }
 
-  addHandlerClick(handler) {
-    this._parentElement.addEventListener("click", this._handlerClick.bind(this, handler));
-  }
+  handlerClick(handler, e) {
+    // console.log(e);
 
-  _handlerClick(handler, e) {
     const btn = e.target.closest("#pagination-search > .btn");
     if (!btn || btn.classList.contains("btn--disabled")) return;
-    if (btn.classList.contains("pagination__previous")) handler(this._parentView, this, -1);
-    if (btn.classList.contains("pagination__next")) handler(this._parentView, this, 1);
+    if (btn.classList.contains("pagination__previous")) handler(false, -1);
+    if (btn.classList.contains("pagination__next")) handler(false, 1);
     this._parentElement.scrollIntoView(true);
   }
 

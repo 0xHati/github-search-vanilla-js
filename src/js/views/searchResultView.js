@@ -1,4 +1,6 @@
 import icons from "url:../../img/sprite.svg";
+import { formatNumber } from "../helper";
+import PaginationView from "./paginationView";
 
 class SearchResult {
   _parentElement = document.querySelector("main");
@@ -9,8 +11,26 @@ class SearchResult {
     this.container.classList.add("searchresult");
   }
 
+  addHandlerSelectRepository(handler) {
+    this.container.addEventListener("click", function (e) {
+      const repositoryItem = e.target.closest(".searchresult__item");
+      if (!repositoryItem) return;
+      console.log(repositoryItem);
+
+      handler(repositoryItem.dataset.owner, repositoryItem.dataset.name);
+    });
+  }
+
   addHandlerSort(handler) {
     this.container.addEventListener("click", this._handlerSort.bind(this, handler));
+  }
+
+  addHandlerPagination(handler) {
+    this.container.addEventListener("click", this._handlerPagination.bind(this, handler));
+  }
+
+  _handlerPagination(handler, e) {
+    this._paginationView.handlerClick(handler, e);
   }
 
   _handlerSort(handler, e) {
@@ -29,6 +49,8 @@ class SearchResult {
 
     this._parentElement.appendChild(this.container);
     this.container.insertAdjacentHTML("afterbegin", html);
+    this._paginationView = new PaginationView(this, "search");
+    this._paginationView.render(data);
 
     this._searchSort = document.querySelector("#searchresult-sort");
     this._searchSelected = document.querySelector(".dropdown__default");
@@ -80,8 +102,9 @@ class SearchResult {
   }
 
   _generateMarkupItem(repository) {
+    console.log(repository);
     return `
-    <li class="searchresult__item">
+    <li class="searchresult__item" data-owner="${repository.owner.login}" data-name="${repository.name}">
       <div class="searchresult__item-left">
         <div class="searchresult__title">${repository.full_name}</div>
         <div class="searchresult__description">
@@ -92,13 +115,13 @@ class SearchResult {
             <svg class="repository__icon">
               <use href="${icons}#star"></use>
             </svg>
-            <span class="respository__star-count">${this._formatNumber(repository.stargazers_count)}</span>
+            <span class="respository__star-count">${formatNumber(repository.stargazers_count)}</span>
           </div>
           <div class="repository__element">
             <svg class="repository__icon">
               <use href="${icons}#repo-forked"></use>
             </svg>
-            <span class="respository__fork-count">${this._formatNumber(repository.forks)}</span>
+            <span class="respository__fork-count">${formatNumber(repository.forks)}</span>
           </div>
           <div class="repository__element">
             <svg class="repository__icon">
@@ -119,10 +142,6 @@ class SearchResult {
       </div>
     </li>
     `;
-  }
-
-  _formatNumber(number) {
-    return number > 1000 ? `${+(number / 1000).toFixed(2)}k` : +number;
   }
 }
 
