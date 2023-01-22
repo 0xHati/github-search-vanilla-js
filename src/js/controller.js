@@ -6,25 +6,27 @@ import repositoryView from "./views/repositoryView";
 
 let paginationViewSearch;
 
-const controlSearchResults = async function (newSearch, page = 0) {
-  if (newSearch) {
+const controlSearchResults = async function (isNewSearch, page = 0) {
+  if (isNewSearch) {
     const query = searchView.getQuery();
     if (query === "") return;
     searchView.renderSearchBarTop();
 
     await model.searchRepositories(query);
   }
-  if (!newSearch) {
+  if (!isNewSearch) {
     await model.searchRepositories(model.state.search.query, model.state.search.currentPage + page, model.state.search.sort, false);
   }
 
   searchResultView.render(model.state.search);
+  searchResultView.updateSorted(model.state.search.sort);
 };
 
 //TODO: is controlSearchResult
 const controlSort = async function (sort) {
   await model.searchRepositories(model.state.search.query, 1, sort);
   searchResultView.render(model.state.search);
+  searchResultView.updateSorted(model.state.search.sort);
 };
 
 const controlSelectRepository = async function (owner, name) {

@@ -22,10 +22,10 @@ main {
 // repository 'page'
 
 .repository-container {
-  display: none;
+  flex: 1;
   @include media(">desktop") {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
 }
 //search result 'page'

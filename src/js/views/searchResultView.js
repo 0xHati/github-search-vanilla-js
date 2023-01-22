@@ -1,13 +1,15 @@
 import icons from "url:../../img/sprite.svg";
 import { formatNumber } from "../helper";
 import PaginationView from "./paginationView";
+import View from "./view";
 
-class SearchResult {
+class SearchResult extends View {
   _parentElement = document.querySelector("main");
 
   container = document.createElement("div");
 
   constructor() {
+    super();
     this.container.classList.add("searchresult");
   }
 
@@ -15,7 +17,6 @@ class SearchResult {
     this.container.addEventListener("click", function (e) {
       const repositoryItem = e.target.closest(".searchresult__item");
       if (!repositoryItem) return;
-      console.log(repositoryItem);
 
       handler(repositoryItem.dataset.owner, repositoryItem.dataset.name);
     });
@@ -40,40 +41,30 @@ class SearchResult {
     handler(itemSelected.dataset.search);
   }
 
-  render(data) {
-    console.log(data);
-    this._clear();
-    let html = "";
-    html += this._generateMarkupInfo(data.totalCount);
-    html += this._generateMarkupList(data.currentPageResult);
+  _generateMarkup(data) {
+    return this._generateMarkupInfo(data.totalCount) + this._generateMarkupList(data.currentPageResult) + this._generatePaginationMarkup(data);
+  }
 
-    this._parentElement.appendChild(this.container);
-    this.container.insertAdjacentHTML("afterbegin", html);
-    this._paginationView = new PaginationView(this, "search");
-    this._paginationView.render(data);
-
+  updateSorted(sortMethod) {
     this._searchSort = document.querySelector("#searchresult-sort");
     this._searchSelected = document.querySelector(".dropdown__default");
-    this._selectSorted(data.sort);
-  }
-
-  _clear() {
-    this.container.innerHTML = "";
-  }
-
-  _selectSorted(sortMethod) {
     const listItems = this._searchSort.querySelectorAll("li");
-    console.log(sortMethod);
+
     const itemSelected = [...listItems].find((item) => item.dataset.search === sortMethod);
     itemSelected.classList.add("dropdown__item--selected");
     this._searchSelected.textContent = itemSelected.textContent;
   }
-  _generateMarkupInfo(totalCount) {
-    const formatter = new Intl.NumberFormat(navigator.locale);
 
+  _generatePaginationMarkup(data) {
+    this._paginationView = new PaginationView(this.container, true);
+    return this._paginationView.getMarkup(data);
+  }
+  _generateMarkupInfo(data) {
+    const formatter = new Intl.NumberFormat(navigator.locale);
+    console.log(data);
     return `
     <div class="searchresult__info">
-      <p><span class="searchresult__amount">${formatter.format(totalCount)}</span>&nbsp;repositories found</p>
+      <p><span class="searchresult__amount">${formatter.format(data)}</span>&nbsp;repositories found</p>
       <div class="dropdown">
             <div class="searchresult__sort dropdown__label">
               sort: <span class="dropdown__default">best match</span>
@@ -82,7 +73,7 @@ class SearchResult {
               </svg>
             </div>
             <ul class="dropdown__list" id="searchresult-sort" role="listbox">
-              <li class="dropdown__item" role="listitem" data-search="best-match">best match</li>
+              <li class="dropdown__item" role="listitem" data-search="best-match" ${console.log(this)}>best match</li>
               <li class="dropdown__item" role="listitem" data-search="stars">stars</li>
               <li class="dropdown__item" role="listitem" data-search="forks">forks</li>
               <li class="dropdown__item" role="listitem" data-search="help-wanted-issues">help-wanted-issues</li>
@@ -102,7 +93,6 @@ class SearchResult {
   }
 
   _generateMarkupItem(repository) {
-    console.log(repository);
     return `
     <li class="searchresult__item" data-owner="${repository.owner.login}" data-name="${repository.name}">
       <div class="searchresult__item-left">

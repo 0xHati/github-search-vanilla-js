@@ -2,12 +2,22 @@ import openIssuesView from "./openIssuesView";
 import ChartView from "./chartView";
 import icons from "url:../../img/sprite.svg";
 import { formatNumber } from "../helper";
+import ActivitiesView from "./activitiesView";
+import OpenIssuesView from "./openIssuesView";
 
 class RepositoryView {
   constructor() {
     this._parentElement = document.querySelector("main");
-    this.container = document.createElement("div");
-    this.container.classList.add("main-content");
+
+    // container
+    this._container = document.createElement("div");
+    this._container.classList.add("repository-container");
+    // main content area
+    this._mainContent = document.createElement("div");
+    this._mainContent.classList.add("main-content");
+    // sidebar area
+    this._sideBar = document.createElement("div");
+    this._sideBar.classList.add("sidebar");
   }
 
   render(data) {
@@ -15,13 +25,23 @@ class RepositoryView {
     // render info
     let html = "";
     html += this._generateRepositoryInfoMarkup(data);
-    this._parentElement.appendChild(this.container);
-    this.container.insertAdjacentHTML("afterbegin", html);
+    this._mainContent.insertAdjacentHTML("afterbegin", html);
     // render chart
-    // render sidebar
-    this.chartView = new ChartView(this._parentElement);
+    // render _sidebar
+    this._chartView = new ChartView(this._mainContent);
+    this._chartView.render(data);
     // sidebar.render()
-    // chartView.render()
+    // activties
+    this._activiesView = new ActivitiesView(this._sideBar);
+    this._activiesView.render("");
+
+    //open issues
+    this._openIssuesView = new OpenIssuesView(this._sideBar);
+    this._openIssuesView.render("");
+
+    this._parentElement.appendChild(this._container);
+    this._container.appendChild(this._mainContent);
+    this._container.appendChild(this._sideBar);
   }
 
   _clear() {
@@ -29,7 +49,6 @@ class RepositoryView {
   }
 
   _generateRepositoryInfoMarkup(data) {
-    console.log(data);
     return `
     <div class="repository">
       <h1 class="repository__title">${data.full_name}</h1>

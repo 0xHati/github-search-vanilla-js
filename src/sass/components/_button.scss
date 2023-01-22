@@ -34,14 +34,17 @@ button {
     transition: all 0.4s ease-in-out;
   }
 
-  &:not(&--disabled):hover {
+  &:not(&--disabled):hover,
+  &:not(&--disabled):active {
     border-color: var(--color-accent-3);
   }
 
-  &:not(&--disabled):hover::after {
+  &:not(&--disabled):hover::after,
+  &:not(&--disabled):active::after {
     transform: translateX(0%);
   }
-  &:not(&--disabled):hover > * {
+  &:not(&--disabled):hover > *,
+  &:not(&--disabled):active > * {
     fill: var(--color-primary);
   }
 

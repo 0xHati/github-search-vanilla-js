@@ -57,7 +57,8 @@
   &__icon {
     fill: var(--color-secondary);
 
-    &:hover {
+    &:hover,
+    &:active {
       fill: var(--color-secondary-light);
       transform: scale(1.02);
     }

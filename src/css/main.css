@@ -211,6 +211,7 @@ body {
     margin-top: auto;
     margin-bottom: auto;
     margin-right: 4rem;
+    gap: 2rem;
   }
 }
 .repository__element {
@@ -386,15 +387,15 @@ button {
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
-.btn:not(.btn--disabled):hover {
+.btn:not(.btn--disabled):hover, .btn:not(.btn--disabled):active {
   border-color: var(--color-accent-3);
 }
-.btn:not(.btn--disabled):hover::after {
+.btn:not(.btn--disabled):hover::after, .btn:not(.btn--disabled):active::after {
   -webkit-transform: translateX(0%);
       -ms-transform: translateX(0%);
           transform: translateX(0%);
 }
-.btn:not(.btn--disabled):hover > * {
+.btn:not(.btn--disabled):hover > *, .btn:not(.btn--disabled):active > * {
   fill: var(--color-primary);
 }
 .btn--disabled {
@@ -501,7 +502,7 @@ button {
 .search__icon {
   fill: var(--color-secondary);
 }
-.search__icon:hover {
+.search__icon:hover, .search__icon:active {
   fill: var(--color-secondary-light);
   -webkit-transform: scale(1.02);
       -ms-transform: scale(1.02);
@@ -616,7 +617,7 @@ button {
 .open-issues__tag:not(:last-child) {
   margin-right: 1rem;
 }
-.open-issues__tag:hover {
+.open-issues__tag:hover, .open-issues__tag:active {
   -webkit-transform: scale(1.02);
       -ms-transform: scale(1.02);
           transform: scale(1.02);
@@ -637,6 +638,7 @@ button {
   min-width: -moz-fit-content;
   min-width: fit-content;
 }
+
 .activities__item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -824,7 +826,7 @@ button {
   transition: all 0.5s ease-in;
   background-image: var(--background-gradient);
 }
-.dropdown:hover .dropdown__list {
+.dropdown:hover .dropdown__list, .dropdown:active .dropdown__list {
   opacity: 1;
   pointer-events: all;
 }
@@ -852,7 +854,7 @@ button {
   border-radius: 1rem;
   padding: 0.5rem 1rem;
 }
-.dropdown__item:hover {
+.dropdown__item:hover, .dropdown__item:active {
   background-color: var(--color-accent-3);
   color: var(--color-background-dark-2);
 }
@@ -894,15 +896,17 @@ main {
 }
 
 .repository-container {
-  display: none;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 @media (min-width: 1025px) {
   .repository-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
   }
 }/*# sourceMappingURL=main.css.map */
