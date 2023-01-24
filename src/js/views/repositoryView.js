@@ -4,51 +4,64 @@ import icons from "url:../../img/sprite.svg";
 import { formatNumber } from "../helper";
 import ActivitiesView from "./activitiesView";
 import OpenIssuesView from "./openIssuesView";
+import View from "./view";
 
-class RepositoryView {
+export default class RepositoryView extends View {
   constructor() {
+    super();
     this._parentElement = document.querySelector("main");
+    this._parentElement.innerHTML = "";
 
     // container
-    this._container = document.createElement("div");
-    this._container.classList.add("repository-container");
+    this.container = document.createElement("div");
+    this.container.classList.add("repository-container");
     // main content area
     this._mainContent = document.createElement("div");
     this._mainContent.classList.add("main-content");
     // sidebar area
     this._sideBar = document.createElement("div");
     this._sideBar.classList.add("sidebar");
-  }
 
-  render(data) {
-    this._clear();
-    // render info
-    let html = "";
-    html += this._generateRepositoryInfoMarkup(data);
-    this._mainContent.insertAdjacentHTML("afterbegin", html);
-    // render chart
-    // render _sidebar
     this._chartView = new ChartView(this._mainContent);
-    this._chartView.render(data);
-    // sidebar.render()
-    // activties
     this._activiesView = new ActivitiesView(this._sideBar);
-    this._activiesView.render("");
-
-    //open issues
-    this._openIssuesView = new OpenIssuesView(this._sideBar);
-    this._openIssuesView.render("");
-
-    this._parentElement.appendChild(this._container);
-    this._container.appendChild(this._mainContent);
-    this._container.appendChild(this._sideBar);
+    this._issuesView = new OpenIssuesView(this._sideBar);
   }
 
   _clear() {
     this._parentElement.innerHTML = "";
   }
 
-  _generateRepositoryInfoMarkup(data) {
+  render() {
+    // render info
+
+    this._clear();
+    window.scrollTo(0, 0), { "scroll-behavior": "auto" };
+
+    this._parentElement.appendChild(this.container);
+
+    this.container.appendChild(this._mainContent);
+    this.container.appendChild(this._sideBar);
+  }
+
+  renderInfo(data) {
+    let html = "";
+    html += this._generateInfoMarkup(data);
+    this._mainContent.insertAdjacentHTML("afterbegin", html);
+  }
+
+  renderChart(data) {
+    this._chartView.render(data);
+  }
+
+  renderActivities(data) {
+    this._activiesView.render(data);
+  }
+
+  renderIssues(data) {
+    this._issuesView.render(data);
+  }
+
+  _generateInfoMarkup(data) {
     return `
     <div class="repository">
       <h1 class="repository__title">${data.full_name}</h1>
@@ -76,12 +89,10 @@ class RepositoryView {
           <span>2.7k</span>
         </div>
       </div>
-        <div class="repository__stat">120 open issues</div>
+        <div class="repository__stat">${data.open_issues_count} open issues</div>
         <div class="repository__stat">35% health score</div>
       </div>
     </div>
     `;
   }
 }
-
-export default new RepositoryView();

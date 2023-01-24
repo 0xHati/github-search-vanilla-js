@@ -22,9 +22,19 @@ main {
 // repository 'page'
 
 .repository-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   flex: 1;
-  @include media(">desktop") {
+
+  @include media(">tablet") {
     display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  @include media(">desktop") {
+    flex-direction: row;
+
     justify-content: space-evenly;
   }
 }

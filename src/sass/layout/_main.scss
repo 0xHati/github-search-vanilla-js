@@ -1,12 +1,16 @@
 .main-content {
   margin-bottom: 4rem;
-
+  display: flex;
+  flex-direction: column;
   @include media(">tablet") {
     margin-bottom: 8rem;
+    width: 100%;
   }
 
   @include media(">desktop") {
     padding-right: 4rem;
+    flex-basis: 60%;
+    width: 50%;
   }
 
   @include media(">big-desktop") {

@@ -56,7 +56,6 @@
     <polyline points="244 400 100 256 244 112"></polyline>
     <line x1="120" y1="256" x2="412" y2="256"></line>
   </symbol>
-  <svg width="0" height="0" class="hidden">
   <symbol version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="arrow-right-thick">
     <title>arrow-right-thick</title>
     <path d="M10.586 6.586c-0.781 0.779-0.781 2.047 0 2.828l1.586 1.586h-7.244c-1.104 0-2 0.895-2 2s0.896 2 2 2h7.244l-1.586 1.586c-0.781 0.779-0.781 2.047 0 2.828 0.391 0.391 0.902 0.586 1.414 0.586s1.023-0.195 1.414-0.586l6.414-6.414-6.414-6.414c-0.781-0.781-2.047-0.781-2.828 0z"></path>
@@ -69,6 +68,8 @@
     <title>ionicons-v5-a</title>
     <polyline points="112 184 256 328 400 184"></polyline>
   </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" id="loader" viewBox="0 0 24 24">
+  <path d="M12 22c5.421 0 10-4.579 10-10h-2c0 4.337-3.663 8-8 8s-8-3.663-8-8c0-4.336 3.663-8 8-8V2C6.579 2 2 6.58 2 12c0 5.421 4.579 10 10 10z"/>
+  </symbol>
 </svg>
 
-</svg>

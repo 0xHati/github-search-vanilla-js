@@ -4,6 +4,7 @@
   }
 
   &__user-image {
+    display: block;
     border-radius: 50%;
     background-color: var(--color-accent-1);
     width: 3rem;
@@ -12,8 +13,10 @@
   }
 
   &__content {
+    display: flex;
     flex: 1;
     margin-bottom: 1rem;
+    align-items: center;
     // flex-direction: column;
   }
   &__title {
@@ -30,7 +33,6 @@
     justify-content: space-between;
 
     @include media(">tablet") {
-      flex-direction: column;
     }
   }
   &__tags {
@@ -39,7 +41,6 @@
 
     @include media(">tablet") {
       display: flex;
-      justify-content: space-evenly;
     }
   }
 

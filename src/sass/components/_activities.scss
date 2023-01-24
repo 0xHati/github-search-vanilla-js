@@ -1,8 +1,9 @@
 .activities {
   &__item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 2rem;
+    // text-align: end;
   }
 
   &__user-image {
@@ -13,11 +14,13 @@
   }
 
   &__name {
+    flex: 1;
   }
 
   &__type {
-    color: var(--color-secondary);
-    font-weight: 500;
+    color: var(--color-background-dark-shade);
+    font-weight: 400;
+    flex: 1;
   }
   &__date {
     font-size: 1.2rem;

@@ -3,14 +3,23 @@ import { formatNumber } from "../helper";
 import PaginationView from "./paginationView";
 import View from "./view";
 
-class SearchResult extends View {
-  _parentElement = document.querySelector("main");
-
-  container = document.createElement("div");
-
+export default class SearchResult extends View {
   constructor() {
     super();
+    this._parentElement = document.querySelector("main");
+    this._parentElement.innerHTML = "";
+
+    this.container = document.createElement("div");
     this.container.classList.add("searchresult");
+    this._parentElement.appendChild(this.container);
+    this._paginationView = new PaginationView(this.container, true);
+  }
+
+  render(data) {
+    super.render(data);
+    this._updateSorted(data.sort);
+
+    this._paginationView.render(data);
   }
 
   addHandlerSelectRepository(handler) {
@@ -42,10 +51,10 @@ class SearchResult extends View {
   }
 
   _generateMarkup(data) {
-    return this._generateMarkupInfo(data.totalCount) + this._generateMarkupList(data.currentPageResult) + this._generatePaginationMarkup(data);
+    return this._generateMarkupInfo(data.totalCount) + this._generateMarkupList(data.currentPageResult);
   }
 
-  updateSorted(sortMethod) {
+  _updateSorted(sortMethod) {
     this._searchSort = document.querySelector("#searchresult-sort");
     this._searchSelected = document.querySelector(".dropdown__default");
     const listItems = this._searchSort.querySelectorAll("li");
@@ -55,13 +64,8 @@ class SearchResult extends View {
     this._searchSelected.textContent = itemSelected.textContent;
   }
 
-  _generatePaginationMarkup(data) {
-    this._paginationView = new PaginationView(this.container, true);
-    return this._paginationView.getMarkup(data);
-  }
   _generateMarkupInfo(data) {
     const formatter = new Intl.NumberFormat(navigator.locale);
-    console.log(data);
     return `
     <div class="searchresult__info">
       <p><span class="searchresult__amount">${formatter.format(data)}</span>&nbsp;repositories found</p>
@@ -73,7 +77,7 @@ class SearchResult extends View {
               </svg>
             </div>
             <ul class="dropdown__list" id="searchresult-sort" role="listbox">
-              <li class="dropdown__item" role="listitem" data-search="best-match" ${console.log(this)}>best match</li>
+              <li class="dropdown__item" role="listitem" data-search="best-match">best match</li>
               <li class="dropdown__item" role="listitem" data-search="stars">stars</li>
               <li class="dropdown__item" role="listitem" data-search="forks">forks</li>
               <li class="dropdown__item" role="listitem" data-search="help-wanted-issues">help-wanted-issues</li>
@@ -134,5 +138,3 @@ class SearchResult extends View {
     `;
   }
 }
-
-export default new SearchResult();

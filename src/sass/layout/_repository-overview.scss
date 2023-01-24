@@ -1,12 +1,13 @@
 .repository {
   margin-bottom: 4rem;
+
   & > * {
     margin-bottom: 2rem;
   }
   &__title {
     font-weight: 500;
     border-bottom: solid 2px var(--color-secondary-light-2);
-    border-image: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-light-3)) 1;
+    border-image: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-3)) 1;
 
     display: inline-block;
     padding-bottom: 1rem;
@@ -107,7 +108,7 @@
   &__stat {
     display: flex;
     max-width: fit-content;
-    border: solid 1px var(--color-accent-2);
+    border: solid 1px var(--color-accent-1);
     border-radius: 1rem;
     padding: 0.5rem 1rem;
 
@@ -123,6 +124,10 @@
 
       @include media(">big-desktop") {
       }
+    }
+
+    &:hover,
+    &:active {
     }
   }
 }

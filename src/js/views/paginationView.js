@@ -8,19 +8,20 @@ export default class PaginationView extends View {
     this.container = document.createElement("div");
     this.container.classList.add("pagination");
     this._showCurrentPage = showCurrentPage;
+    this._parentElement.appendChild(this.container);
   }
 
   handlerClick(handler, e) {
-    const btn = e.target.closest("#pagination-search > .btn");
+    const btn = e.target.closest(".pagination > .btn");
     if (!btn || btn.classList.contains("btn--disabled")) return;
-    if (btn.classList.contains("pagination__previous")) handler(false, -1);
-    if (btn.classList.contains("pagination__next")) handler(false, 1);
+    if (btn.classList.contains("pagination__previous")) handler(-1);
+    if (btn.classList.contains("pagination__next")) handler(1);
     this._parentElement.scrollIntoView(true);
   }
 
   _generateMarkup(data) {
     return `
-    <div class="pagination" id="pagination-search" data-${this._name}>
+    <div class="pagination">
       <button class="pagination__previous btn ${data.currentPage === 1 ? "btn--disabled" : ""}">
         <svg class="pagination__icon">
             <use href="${icons}#arrow-left-thick"></use>
@@ -37,9 +38,5 @@ export default class PaginationView extends View {
       </button>
     </div>
     `;
-  }
-
-  getMarkup(data) {
-    return this._generateMarkup(data);
   }
 }

@@ -33,6 +33,14 @@
     @include media(">desktop") {
       margin-bottom: 2rem;
     }
+
+    &-activities {
+      order: 1;
+    }
+
+    &-issues {
+      order: 2;
+    }
   }
 
   &__item > .heading-tertiary {

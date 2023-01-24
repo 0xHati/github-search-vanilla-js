@@ -17,7 +17,12 @@
   align-items: center;
   padding: 0 0.75rem;
   border-radius: 1rem;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--color-accent-1);
+
+  &:focus-within,
+  &:active {
+    border: 1px solid var(--color-accent-1-light);
+  }
 
   // transition: all ease-out 2s;
 
@@ -44,7 +49,8 @@
       opacity: 0;
     }
 
-    &:focus {
+    &:focus,
+    &:active {
       outline: none;
     }
   }
@@ -55,11 +61,11 @@
   }
 
   &__icon {
-    fill: var(--color-secondary);
+    fill: var(--color-background-dark-shade);
 
     &:hover,
     &:active {
-      fill: var(--color-secondary-light);
+      fill: var(--color-accent-3);
       transform: scale(1.02);
     }
 

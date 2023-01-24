@@ -8,5 +8,11 @@
   "devDependencies": {
     "parcel": "^2.8.2",
     "sass": "^1.57.1"
+  },
+  "dependencies": {
+    "apexcharts": "^3.36.3",
+    "chart.js": "^4.2.0",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "date-fns": "^2.29.3"
   }
 }

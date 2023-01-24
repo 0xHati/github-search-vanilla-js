@@ -1,3 +1,5 @@
+import icons from "url:../../img/sprite.svg";
+
 export default class View {
   // has always access to parentElement, and container
 
@@ -6,7 +8,6 @@ export default class View {
 
     this._data = data;
     const html = this._generateMarkup(data);
-
     this._clear();
     this._parentElement.appendChild(this.container);
 
@@ -15,5 +16,20 @@ export default class View {
 
   _clear() {
     this.container.innerHTML = "";
+  }
+
+  renderSpinner(size = "normal") {
+    this._clear();
+    this.container.insertAdjacentHTML("afterbegin", this._renderSpinner(size));
+  }
+
+  _renderSpinner(size) {
+    return `
+      <div class="spinner spinner--${size}">
+        <svg>
+          <use href="${icons}#loader"></use>
+        </svg>
+      </div>
+    `;
   }
 }
