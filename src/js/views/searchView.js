@@ -1,8 +1,7 @@
 import View from "./view";
 
-class SearchView extends View {
+export default class SearchView extends View {
   _searchForm = document.querySelector(".search");
-  _searchBar = document.querySelector(".searchbar-container--center");
 
   getQuery() {
     return this._searchForm.querySelector(".search__input").value;
@@ -17,11 +16,4 @@ class SearchView extends View {
     // TODO: now the searchbar will be moved to top independently if it's a valid search
     handler(0, newSearch);
   }
-
-  renderSearchBarTop() {
-    this._searchBar.classList.remove(`searchbar-container--center`);
-    this._searchBar.classList.add("searchbar-container--top", "navbar");
-  }
 }
-
-export default new SearchView();

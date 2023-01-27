@@ -1,9 +1,7 @@
 .activities {
   &__item {
     display: flex;
-    align-items: center;
     gap: 2rem;
-    // text-align: end;
   }
 
   &__user-image {
@@ -20,10 +18,14 @@
   &__type {
     color: var(--color-background-dark-shade);
     font-weight: 400;
+    // flex: 1;
+    text-align: center;
     flex: 1;
   }
   &__date {
     font-size: 1.2rem;
     font-weight: 200;
+    text-align: end;
+    flex: 1;
   }
 }

@@ -1,6 +1,6 @@
 import PaginationView from "./paginationView";
 import View from "./view";
-import { formatDate } from "../helper";
+import { formatDate, relativeDate } from "../helper";
 
 export default class ActivitiesView extends View {
   constructor(parentElement) {
@@ -9,12 +9,17 @@ export default class ActivitiesView extends View {
     this.container = document.createElement("div");
     this.container.classList.add("sidebar__item", "sidebar__item-activities");
     this._parentElement.appendChild(this.container);
+    this._message = "No recent activities found.";
   }
 
   render(data) {
     super.render(data.data);
-    this._paginationView = new PaginationView(this.container, false);
-    this._paginationView.render(data);
+    if (data.data.length === 0) {
+      this.renderMessage(this._message);
+    } else {
+      this._paginationView = new PaginationView(this.container, false);
+      this._paginationView.render(data);
+    }
   }
 
   addHandlerPagination(handler) {
@@ -41,10 +46,10 @@ export default class ActivitiesView extends View {
   _generateActivityMarkup(activity) {
     return `
     <li class="activities__item">
-      <img src="${activity.actor.avatar_url}" class="activities__user-image" />
-      <span class="activities__name">${activity.actor.display_login}</span>
-      <span class="activities__type">${activity.type}</span>
-      <span class="activities__date">${formatDate(activity.created_at)}</span>
+        <img src="${activity.actor.avatar_url}" class="activities__user-image" />
+        <span class="activities__name">${activity.actor.display_login}</span>
+        <span class="activities__type">${activity.typeText}</span>
+        <span class="activities__date">${relativeDate(activity.created_at)}</span>
     </li>
     `;
   }

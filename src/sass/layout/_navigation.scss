@@ -1,24 +1,33 @@
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 4rem;
+nav {
+  padding: 2rem;
+
+  z-index: 99;
+  position: fixed;
+  background-image: var(--background-gradient);
+  top: 0rem;
+  left: 0rem;
+  right: 0rem;
 }
 
-// .navbar {
-//   flex: 1;
-//   @include media(">tablet") {
-//     flex-basis: 85%;
-//   }
+nav.nav--sticky {
+  position: fixed;
+  background-image: var(--background-gradient);
+  top: 0rem;
+  left: 0rem;
+  right: 0rem;
+}
 
-//   @include media(">desktop") {
-//     flex: 0 0 75%;
-//     width: 75%;
-//   }
+.navigation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-//   @include media(">big-desktop") {
-//     flex: 0 0 65%;
+  @include media(">desktop") {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+}
 
-//     width: 65%;
-//   }
-// }
+.nav--sticky {
+}

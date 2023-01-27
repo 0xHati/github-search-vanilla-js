@@ -21,6 +21,8 @@ export let state = {
       data: "",
     },
     history: [],
+    languages: "",
+    topics: "",
   },
 };
 
@@ -43,10 +45,34 @@ export const searchRepositories = async function (query, page = 1, sort = "best-
   saveState();
 };
 
-export const getRepository = async function (owner, name) {
-  const data = await makeRequest(API_URL + `/repos/${owner}/${name}`);
+export const getRepositoryInfo = async function (owner, repoName) {
+  await _getRepository(owner, repoName);
+  await _getRepositoryLanguages(owner, repoName);
+  await _getRepositoryTopics(owner, repoName);
+};
+
+const _getRepository = async function (owner, repoName) {
+  const data = await makeRequest(API_URL + `/repos/${owner}/${repoName}`);
 
   state.repository.data = data;
+};
+
+const _getRepositoryLanguages = async function (owner, repoName) {
+  const data = await makeRequest(API_URL + `/repos/${owner}/${repoName}/languages`);
+  const sum = Object.values(data).reduce(function (sum, item) {
+    return (sum += item);
+  });
+
+  for (let [key, value] of Object.entries(data)) {
+    data[key] = (value / sum) * 100;
+  }
+
+  state.repository.languages = data;
+};
+
+const _getRepositoryTopics = async function (owner, repoName) {
+  const data = makeRequest(API_URL + `/repos/${owner}/${repoName}/topics`);
+  state.repository.topics = data;
 };
 
 export const searchIssues = async function (page = 1) {
@@ -66,6 +92,45 @@ export const searchRecentActivity = async function (page = 1) {
   `
   );
   state.repository.recentActivity.data = data;
+  state.repository.recentActivity.data.map(_updateActivityName.bind(this));
+};
+
+const _updateActivityName = function (activity) {
+  switch (activity.type) {
+    case "CreateEvent":
+      return (activity.typeText = `created ${activity.payload.ref_type}`);
+    case "DeleteEvent":
+      return (activity.typeText = `deleted ${activity.payload.ref_type}`);
+    case "ForkEvent":
+      return (activity.typeText = "forked");
+    case "GollumEvent":
+      return (activity.typeText = "wiki page updated/created");
+    case "IssueCommentEvent":
+      return (activity.typeText = `issue comment ${activity.payload.action}`);
+    case "IssuesEvent":
+      return (activity.typeText = `issue ${activity.payload.action}`);
+    case "MemberEvent":
+      return (activity.typeText = `member ${activity.payload.action}`);
+    case "PublicEvent":
+      return (activity.typeText = "made repo public");
+    case "PullRequestEvent":
+      return (activity.typeText = `pull request ${activity.payload.number} ${activity.payload.action}`);
+    case "PullRequestReviewEvent":
+      return (activity.typeText = "pull request review");
+    case "PullRequestReviewCommentEvent":
+      return (activity.typeText = "pull request review comment");
+    case "PullRequestReviewThreadEvent":
+      return (activity.typeText = "pull request thread");
+    case "PushEvent":
+      return (activity.typeText = "commit pushed");
+    case "ReleaseEvent":
+      return (activity.typeText = `release ${activity.payload.action}`);
+    case "SponsorshipEvent":
+      return (activity.typeText = `sponsorship event`);
+
+    case "WatchEvent":
+      return (activity.typeText = "watching");
+  }
 };
 
 export const fetchRepoHistory = async function () {
@@ -74,17 +139,9 @@ export const fetchRepoHistory = async function () {
   const name = state.repository.data.name;
 
   const step = Math.ceil(starGazersCount / DATA_POINTS); // 2000
-  console.log(step);
   const requestCount = step >= 100 ? 100 : step;
 
   const urls = [];
-
-  // pag1
-  // pag 20 (step / 100 (res per pag))
-  // pag 40
-  // pag 60
-
-  // tot pag * 100 <= stargazers
 
   let count = 1;
 
@@ -110,9 +167,7 @@ export const fetchRepoHistory = async function () {
     const data = await Promise.all(urls).then((responses) =>
       Promise.all(
         responses.map((response) => {
-          console.log(response);
           if (!response?.ok) {
-            console.log(response);
           } else {
             return response.json();
           }
@@ -120,7 +175,6 @@ export const fetchRepoHistory = async function () {
       ).then((response) => {
         if (step >= 100) {
           return response.map((v, i) => {
-            console.log(v);
             return {
               x: new Date(v[0].starred_at).getTime(),
               y: i * step,
@@ -142,7 +196,6 @@ export const fetchRepoHistory = async function () {
       })
     );
 
-    console.log(data);
     state.repository.history = data;
   } catch (err) {
     throw err;

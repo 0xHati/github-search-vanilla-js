@@ -2,6 +2,7 @@ import { Chart, ChartArea } from "chart.js/auto";
 import { en } from "date-fns/locale";
 import "chartjs-adapter-date-fns";
 import View from "./view";
+import icons from "url:../../img/sprite.svg";
 
 export default class ChartView extends View {
   constructor(parentElement) {
@@ -11,6 +12,8 @@ export default class ChartView extends View {
 
     this._parentElement = parentElement;
     this._parentElement.appendChild(this.container);
+    this._darkmodeButton = document.querySelector(".menu__darkmode-btn");
+    this._darkmodeButton.addEventListener("click", this.handleSwitchThemeEvent.bind(this));
   }
 
   //TODO: I want that if I had a handler for an event to the chartview
@@ -18,22 +21,42 @@ export default class ChartView extends View {
   // need to bind the handler from the controller directly to here
   // so the controller needs to know this view
   render(data) {
-    super.render();
+    super.render(data);
     this._chart = document.querySelector("#chart-star-history");
 
-    this._loadChart(data);
+    this._loadChart(data.history);
+
+    // this._header = document.querySelector('chart__header')
+    // this.
   }
 
   // _clear() {
   //   this._parentElement.innerHTML = "";
   // }
 
-  _loadChart(data) {
-    //get css vars
-    const root = document.querySelector(":root");
+  handleSwitchThemeEvent() {
     const borderColor = getComputedStyle(document.documentElement).getPropertyValue("--color-accent-1");
-    const colorSecondary = getComputedStyle(document.documentElement).getPropertyValue("--color-secondary");
-    const grad = getComputedStyle(document.documentElement).getPropertyValue("--border-gradient");
+    const colorPrimary = getComputedStyle(document.documentElement).getPropertyValue("--color-primary");
+
+    this.chart.options.elements.line.borderColor = this._createGradient();
+    this.chart.options.elements.line.backgroundColor = borderColor;
+    this.chart.options.scales.y.border.color = borderColor;
+    this.chart.options.scales.y.ticks.color = colorPrimary;
+    this.chart.options.scales.x.border.color = borderColor;
+    this.chart.options.scales.x.ticks.color = colorPrimary;
+
+    this.chart.update();
+  }
+
+  _loadChart(data) {
+    const formatTooltip = (tooltipItems) => {
+      // console.log(new Date(tooltipItems.raw.x).toLocaleDateString(navigator.language));
+      return `${new Date(tooltipItems[0].raw.x).toLocaleDateString(navigator.language)}`;
+      // return `${+tooltipItems.raw.toFixed(0)}%`;
+    };
+    //get css vars
+    const borderColor = getComputedStyle(document.documentElement).getPropertyValue("--color-accent-1");
+    const colorPrimary = getComputedStyle(document.documentElement).getPropertyValue("--color-primary");
 
     const cfg = {
       type: "line",
@@ -50,15 +73,15 @@ export default class ChartView extends View {
       options: {
         parsing: false,
         normalized: true,
-        animation: false,
+        animation: true,
         plugins: {
-          decimation: {
-            enabled: true,
-            algorithm: "lttb",
-            samples: 50,
-          },
           legend: {
             display: false,
+          },
+          tooltip: {
+            callbacks: {
+              title: formatTooltip,
+            },
           },
         },
 
@@ -76,7 +99,7 @@ export default class ChartView extends View {
             border: {
               color: borderColor,
             },
-            ticks: { color: "#d3e0ee", source: data },
+            ticks: { color: colorPrimary, source: data },
           },
           x: {
             adapters: {
@@ -87,13 +110,13 @@ export default class ChartView extends View {
             type: "time",
             time: {
               unit: "month",
-              parser: "MMDD,YYYY HH:mm",
             },
 
             // suggestedMax: Date.now(),
             grid: {
               display: false,
             },
+
             border: {
               color: borderColor,
             },
@@ -103,7 +126,7 @@ export default class ChartView extends View {
                 // Hide every 2nd tick label
                 return index % 2 === 0 ? new Date(val).toLocaleDateString(navigator.locale) : "";
               },
-              color: "#d3e0ee",
+              color: colorPrimary,
               source: "auto",
               autoSkip: true,
               autoSkipPadding: 30,
@@ -122,9 +145,27 @@ export default class ChartView extends View {
   }
 
   _generateMarkup() {
-    return `<h3 class="heading-tertiary">Stargazers over time</h3>
+    return `
+    <div class="chart__header">
+      <h3 class="heading-tertiary chart__title">Stargazers over time</h3>
+      ${
+        this._data.data.stargazers_count > 40000
+          ? `
+      <div class="chart__info">
+        <svg class="chart__info-icon">
+          <use href="${icons}#info"></use>
+        </svg>
+        <p class="chart__info-message">Github only shows the first 40.000 stargazers.</p>
+      </div>`
+          : ""
+      }
+      </div>
     <canvas id="chart-star-history"></canvas>
     `;
+  }
+
+  _generateInfoMarkup() {
+    ``;
   }
 
   _createGradient() {

@@ -32,4 +32,12 @@ export default class View {
       </div>
     `;
   }
+
+  renderMessage(message) {
+    this._clear();
+    const html = `
+    <p class="info-message">${message}</p>
+    `;
+    this.container.insertAdjacentHTML("beforeend", html);
+  }
 }

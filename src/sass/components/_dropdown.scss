@@ -3,19 +3,49 @@
   cursor: pointer;
   z-index: 1;
   position: absolute;
-  right: 0%;
+  right: 0;
+  top: 3rem;
+
+  &--mobile {
+    &:hover + .dropdown > .dropdown__list,
+    &:active + .dropdown > .dropdown__list {
+      display: block;
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    & > .dropdown__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      fill: var(--color-primary);
+    }
+
+    @include media(">tablet") {
+      display: none;
+    }
+  }
+
+  @include media(">tablet") {
+    top: -0.5rem;
+  }
 
   &__list {
     border: 1px solid var(--color-accent-1);
     border-radius: 1rem;
+    display: none;
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s ease-in;
     background-image: var(--background-gradient);
+
+    @include media(">tablet") {
+      display: block;
+    }
   }
 
   &:hover &__list,
   &:active &__list {
+    display: block;
     opacity: 1;
     pointer-events: all;
   }
@@ -25,11 +55,15 @@
   }
 
   &__label {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid var(--color-accent-1);
-    border-radius: 1rem;
-    padding: 0.5rem 1rem;
+    display: none;
+
+    @include media(">tablet") {
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid var(--color-accent-1);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+    }
   }
 
   &__icon {
@@ -52,5 +86,8 @@
     &--selected {
       color: var(--color-accent-3);
     }
+  }
+
+  &__default {
   }
 }

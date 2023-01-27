@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,34 +8,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="src/css/main.css" />
-    <script type="module" defer src="src/js/controller.js"></script>
 
     <title>Github Project Overview</title>
   </head>
   <body>
     <nav>
-      <div class="searchbar-container--center">
-        <form class="search search--large">
-          <button class="search__button" type="submit">
-            <svg class="search__icon">
-              <use href="src/img/sprite.svg#search"></use>
-            </svg>
-          </button>
-          <div class="search__input-container">
+      <div class="navigation-container">
+        <div class="searchbar-container">
+          <form class="search">
             <input type="search" class="search__input" placeholder="search a repository" />
-            <svg class="search__icon-close">
-              <use href="src/img/sprite.svg#close"></use>
-            </svg>
-          </div>
+            <button class="search__button" type="submit">
+              <svg class="search__icon">
+                <use href="src/img/sprite.svg#search"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
 
-          <button class="search__button">
-            <svg class="search__icon">
-              <use href="src/img/sprite.svg#options"></use>
-            </svg>
+        <div class="menu">
+          <button class="menu__button">
+            <span>&nbsp;</span>
+            <span>&nbsp;</span>
+            <span>&nbsp;</span>
           </button>
-        </form>
+          <div class="menu__content">
+            <button class="menu__darkmode-btn">
+              <svg class="menu__darkmode-icon menu__darkmode-icon--light">
+                <use href="src/img/sprite.svg#light-fill"></use>
+              </svg>
+              <svg class="menu__darkmode-icon menu__darkmode-icon--dark menu__darkmode-icon--active">
+                <use href="src/img/sprite.svg#dark-fill"></use>
+              </svg>
+            </button>
+            <ul>
+              <li>About</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
+
     <main></main>
   </body>
 </html>

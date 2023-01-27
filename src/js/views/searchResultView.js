@@ -1,5 +1,6 @@
 import icons from "url:../../img/sprite.svg";
 import { formatNumber } from "../helper";
+import NavigationView from "./navigationView";
 import PaginationView from "./paginationView";
 import View from "./view";
 
@@ -69,21 +70,29 @@ export default class SearchResult extends View {
     return `
     <div class="searchresult__info">
       <p><span class="searchresult__amount">${formatter.format(data)}</span>&nbsp;repositories found</p>
+      <div class="dropdown--mobile">
+
+        <svg class="dropdown__icon">
+          <use href="${icons}#sort"></use>
+        </svg>
+      </div>
       <div class="dropdown">
-            <div class="searchresult__sort dropdown__label">
-              sort: <span class="dropdown__default">best match</span>
-              <svg class="dropdown__icon">
-                <use href="${icons}#chevron-down"></use>
-              </svg>
-            </div>
-            <ul class="dropdown__list" id="searchresult-sort" role="listbox">
-              <li class="dropdown__item" role="listitem" data-search="best-match">best match</li>
-              <li class="dropdown__item" role="listitem" data-search="stars">stars</li>
-              <li class="dropdown__item" role="listitem" data-search="forks">forks</li>
-              <li class="dropdown__item" role="listitem" data-search="help-wanted-issues">help-wanted-issues</li>
-              <li class="dropdown__item" role="listitem" data-search="updated">updated</li>
-            </ul>
-          </div>
+       
+       
+        <div class="searchresult__sort dropdown__label">
+          sort: <span class="dropdown__default">best match</span>
+          <svg class="dropdown__icon">
+            <use href="${icons}#chevron-down"></use>
+          </svg>
+        </div>
+        <ul class="dropdown__list" id="searchresult-sort" role="listbox">
+          <li class="dropdown__item" role="listitem" data-search="best-match">best match</li>
+          <li class="dropdown__item" role="listitem" data-search="stars">stars</li>
+          <li class="dropdown__item" role="listitem" data-search="forks">forks</li>
+          <li class="dropdown__item" role="listitem" data-search="help-wanted-issues">help-wanted-issues</li>
+          <li class="dropdown__item" role="listitem" data-search="updated">updated</li>
+        </ul>
+      </div>
     </div>
 
     `;
@@ -119,9 +128,9 @@ export default class SearchResult extends View {
           </div>
           <div class="repository__element">
             <svg class="repository__icon">
-              <use href="${icons}#person"></use>
+              <use href="${icons}#view-show"></use>
             </svg>
-            <span>2.7k</span>
+            <span class="respository__watch-count">${formatNumber(repository.watchers)}</span>
           </div>
         </div>
       </div>

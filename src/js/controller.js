@@ -1,25 +1,27 @@
-import searchView from "./views/searchView";
 import SearchResultView from "./views/searchResultView";
 import * as model from "./model";
 import PaginationView from "./views/paginationView";
 import RepositoryView from "./views/repositoryView";
+import NavigationView from "./views/navigationView";
+import SearchView from "./views/searchView";
 
 //these are the pages of the site
 let searchResultView;
 let repositoryView;
+let navigationView;
+let searchView;
 
 const controlSearchResults = async function (page = 0, isNewSearch = false) {
-  console.log(isNewSearch);
   if (isNewSearch) {
-    searchView.renderSearchBarTop();
+    const query = searchView.getQuery();
+    if (query === "") return;
+
     searchResultView = new SearchResultView();
     searchResultView.addHandlerPagination(controlSearchResults);
     searchResultView.addHandlerSort(controlSort);
     searchResultView.addHandlerSelectRepository(controlSelectRepository);
     searchResultView.renderSpinner("big");
 
-    const query = searchView.getQuery();
-    if (query === "") return;
     try {
       await model.searchRepositories(query);
     } catch (err) {
@@ -48,12 +50,12 @@ const controlSelectRepository = async function (owner, name) {
   repositoryView._chartView.renderSpinner();
 
   try {
-    await model.getRepository(owner, name).then(() => repositoryView.renderInfo(model.state.repository.data));
+    await model.getRepositoryInfo(owner, name).then(() => repositoryView.renderInfo(model.state.repository));
     await model.searchIssues(model.state.repository.issues.currentPage).then(() => repositoryView.renderIssues(model.state.repository.issues));
     await model
       .searchRecentActivity(model.state.repository.recentActivity.currentPage)
       .then(() => repositoryView.renderActivities(model.state.repository.recentActivity));
-    await model.fetchRepoHistory().then(() => repositoryView.renderChart(model.state.repository.history));
+    await model.fetchRepoHistory().then(() => repositoryView.renderChart(model.state.repository));
   } catch (err) {
     console.error(err);
   }
@@ -80,10 +82,25 @@ const controlIssues = async function (page) {
 
 const init = function () {
   // model.loadState();
-  searchView.addHandlerSearch(controlSearchResults);
 
   //TODO: can use the controlSearch because a new page is basically a new search,
   // set parameter newSearch to False to make a check in the funciton
+
+  // set data theme to browser
+
+  const matches = window.matchMedia("(prefers-color-scheme: dark)");
+
+  document.documentElement.setAttribute("data-theme", matches ? "dark" : "light");
+
+  const currentTheme = localStorage.getItem("theme") ? localStorage.getItem("theme") : null;
+  if (currentTheme) {
+    document.documentElement.setAttribute("data-theme", currentTheme);
+  }
+
+  // searchView = new SearchView();
+  navigationView = new NavigationView();
+  searchView = navigationView._searchView;
+  searchView.addHandlerSearch(controlSearchResults);
 };
 
 init();

@@ -4,13 +4,17 @@
   & > * {
     margin-bottom: 2rem;
   }
+
+  &__header {
+    display: inline-flex;
+    align-items: center;
+    border-bottom: solid 2px transparent;
+    border-image: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-3)) 1;
+    padding-bottom: 1rem;
+  }
   &__title {
     font-weight: 500;
-    border-bottom: solid 2px var(--color-secondary-light-2);
-    border-image: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-3)) 1;
 
-    display: inline-block;
-    padding-bottom: 1rem;
     letter-spacing: 0.1rem;
 
     font-size: 2rem;
@@ -19,16 +23,35 @@
   &__description {
   }
 
+  &__link {
+    display: inline-block;
+  }
+
   &__icon {
-    height: 2rem;
-    width: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
     fill: var(--color-secondary);
     margin-right: 0.8rem;
     font-size: 1.2rem;
-    @include media(">desktop") {
-      height: 2.5rem;
-      width: 2.5rem;
+    display: block;
+
+    @include media(">tablet") {
+      height: 3rem;
+      width: 3rem;
     }
+
+    &-small {
+      // height: 2rem;
+      // width: 2rem;
+      // position: absolute;
+      // top: 0;
+      fill: var(--color-accent-1-light);
+    }
+  }
+
+  &__link:hover,
+  &__link:active {
+    transform: scale(1.05);
   }
 
   &__stats {
@@ -128,6 +151,27 @@
 
     &:hover,
     &:active {
+    }
+  }
+
+  &__languages {
+    width: 80%;
+    // margin-left: -1rem;
+    height: 5rem;
+
+    &canvas {
+    }
+
+    @include media(">tablet") {
+      width: 50%;
+    }
+  }
+
+  &__language {
+    display: none;
+
+    @include media(">tablet") {
+      display: unset;
     }
   }
 }

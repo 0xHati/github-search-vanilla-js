@@ -1,112 +1,129 @@
-.searchbar-container--top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.searchbar-container {
   flex: 1;
-}
+  @include media(">desktop") {
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    width: 50%;
+    transform: translateX(-50%);
+  }
 
-.searchbar-container--center {
-  display: flex;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
+  &--home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex: 1;
+
+    & > form {
+      flex: 0 0 50%;
+    }
+
+    & > .search {
+      border-radius: 1rem;
+      border: 1px solid var(--color-accent-1);
+      align-items: center;
+      display: flex;
+      height: auto;
+      width: auto;
+
+      & > .search__input {
+        opacity: 1;
+        font-size: 1.8rem;
+        width: 100%;
+      }
+    }
+  }
 }
 
 .search {
+  --size: 3rem;
   display: flex;
-  align-items: center;
-  padding: 0 0.75rem;
-  border-radius: 1rem;
-  border: 1px solid var(--color-accent-1);
+  height: calc(var(--size) + 4px);
+  width: calc(var(--size) + 4px);
+  position: relative;
+  transition: width 0.4s ease-out;
+  overflow: hidden;
 
-  &:focus-within,
-  &:active {
-    border: 1px solid var(--color-accent-1-light);
-  }
-
-  // transition: all ease-out 2s;
-
-  &__input-container {
-    display: flex;
-    flex: 1;
-    position: relative;
+  @include media(">desktop") {
+    border-radius: 1rem;
+    border: 1px solid var(--color-accent-1);
+    align-items: center;
+    height: auto;
+    width: auto;
+    padding: 0.5rem;
   }
 
   &__input {
-    flex: 1;
-    border: none;
-    background-color: transparent;
-    margin: 0.75rem 2rem;
+    flex-grow: 1;
     color: var(--color-text-primary);
+    background-color: transparent;
+    border: none;
+    padding: 0 1rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    outline: 0;
+    opacity: 0;
+    z-index: 20;
+    cursor: pointer;
+    font-size: 1.6rem;
     text-align: center;
+
+    @include media(">desktop") {
+      opacity: 1;
+      position: relative;
+      cursor: initial;
+      font-size: 1.8rem;
+    }
 
     &::placeholder {
       color: currentColor;
       opacity: 50%;
+      text-align: center;
     }
-
-    &::-webkit-search-cancel-button {
-      opacity: 0;
-    }
-
-    &:focus,
-    &:active {
-      outline: none;
-    }
-  }
-
-  &__input:not(:placeholder-shown) + &__icon-close {
-    opacity: 1;
-    z-index: -1;
   }
 
   &__icon {
-    fill: var(--color-background-dark-shade);
+    width: var(--size);
+    height: var(--size);
+    fill: var(--color-primary);
 
     &:hover,
     &:active {
       fill: var(--color-accent-3);
-      transform: scale(1.02);
-    }
-
-    &-close {
-      fill: var(--color-secondary);
-      position: absolute;
-      right: 1.62rem;
-      top: 0.8rem;
-      opacity: 0;
     }
   }
 
-  &--large {
-    // flex: 0 0 50%;
-    flex: 1;
+  &__button {
+    margin-left: auto;
+    cursor: pointer;
+    z-index: 15;
+    // pointer-events: none;
+    display: flex;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
 
-    & .search__button {
-      height: 3rem;
-      width: 3rem;
-    }
-
-    & .search__input {
-      font-size: 2rem;
-    }
-
-    & .search__icon {
-      height: 3rem;
-      width: 3rem;
-
-      &-close {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
+    @include media(">desktop") {
+      display: flex;
     }
   }
 
-  @include media(">tablet") {
-    flex: 0 0 75%;
-  }
+  &:focus-within {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid var(--color-accent-1-light);
+    z-index: 5;
+    background-image: var(--background-gradient);
+    .search__input {
+      opacity: 1;
+      width: calc(100% - var(--size));
+      cursor: initial;
+    }
 
-  @include media(">desktop") {
-    flex: 0 0 50%;
+    @include media(">desktop") {
+      background-image: initial;
+    }
   }
 }

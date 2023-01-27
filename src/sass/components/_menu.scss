@@ -1,0 +1,139 @@
+.menu {
+  // position: relative;
+  @include media(">desktop") {
+    margin-left: auto;
+    margin-right: 5rem;
+  }
+
+  &__button {
+    z-index: 2;
+    position: relative;
+    // transition: all 1s ease-in;
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      --width: 2.5rem;
+
+      width: var(--width);
+      height: 2px;
+
+      background-color: var(--color-primary);
+      position: absolute;
+      top: 0;
+      right: var(--width);
+
+      transition: all 0.4s ease-out;
+    }
+
+    & > :nth-child(1) {
+      transform: translateY(-1rem);
+    }
+
+    & > :nth-child(2) {
+    }
+
+    & > :nth-child(3) {
+      transform: translateY(1rem);
+    }
+
+    &--open > :nth-child(1) {
+      transform: rotate(-45deg);
+    }
+    &--open > :nth-child(2) {
+      display: none;
+    }
+
+    &--open > :nth-child(3) {
+      transform: rotate(45deg);
+    }
+
+    @include media(">desktop") {
+      display: none;
+    }
+  }
+
+  &__darkmode-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    &:hover > .menu__darkmode-icon,
+    &:active > .menu__darkmode-icon {
+      fill: var(--color-secondary-dark);
+    }
+
+    &:hover > .menu__darkmode-icon--dark,
+    &:active > .menu__darkmode-icon--dark {
+      fill: var(--color-accent-3-dark);
+    }
+  }
+
+  &__darkmode-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    transition: transform 0.4s cubic-bezier(0.05, 0.91, 0.39, 1.52);
+
+    &--light {
+      transform: translateY(100%);
+      fill: var(--color-secondary);
+    }
+
+    &--dark {
+      fill: var(--color-accent-3);
+      transform: translateY(-100%);
+    }
+
+    &--active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__button--open {
+  }
+
+  &__content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    font-size: 2rem;
+
+    background-image: var(--background-gradient);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10rem;
+    gap: 1rem;
+    transition: translate 1s ease-in;
+    display: none;
+
+    @include media(">desktop") {
+      flex-direction: row-reverse;
+      position: relative;
+      height: initial;
+      background-image: initial;
+      padding: initial;
+      gap: 5rem;
+      transform: translateX(0);
+      display: flex;
+    }
+
+    &--open {
+      transform: translateX(0);
+      display: flex;
+    }
+  }
+  &__links > *:hover,
+  &__links > *:active {
+    color: var(--color-accent-3);
+    cursor: pointer;
+  }
+}

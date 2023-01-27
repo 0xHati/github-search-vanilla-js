@@ -28,7 +28,7 @@
 
   &__item {
     margin-bottom: 4rem;
-    flex: 1;
+    // flex: 1;
 
     @include media(">desktop") {
       margin-bottom: 2rem;

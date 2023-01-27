@@ -36,6 +36,10 @@ body {
   margin: 2rem 2rem;
 }
 
+main {
+  margin-top: 10rem;
+}
+
 ul {
   list-style: none;
 }
@@ -57,4 +61,18 @@ option {
   appearance: none;
   color: inherit;
   background-color: var(--color-accent-1);
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.link--block {
+  flex: 1;
+
+  &:hover,
+  &:active {
+    transform: scale(1.02);
+  }
 }
