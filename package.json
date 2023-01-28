@@ -2,7 +2,7 @@
   "name": "github-star-tracker",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel /*.html",
+    "start": "parcel *.html",
     "build": "parcel build *.html"
   },
   "devDependencies": {

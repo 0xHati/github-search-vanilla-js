@@ -33,10 +33,10 @@ body {
   background-image: var(--background-gradient);
   background-size: cover;
   background-repeat: no-repeat;
-  margin: 2rem 2rem;
+  margin: var(--margin-body);
 }
 
-main {
+body:has(.header--sticky) main {
   margin-top: 10rem;
 }
 

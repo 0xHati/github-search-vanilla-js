@@ -1,5 +1,6 @@
 import icons from "url:../../img/sprite.svg";
 import SearchView from "./searchView";
+import logo from "url:../../img/github_logo.png";
 
 import View from "./view";
 
@@ -7,10 +8,10 @@ export default class NavigationView extends View {
   constructor() {
     super();
 
-    this._parentElement = document.querySelector("nav");
+    this._parentElement = document.querySelector("header");
 
     this.container = document.createElement("div");
-    this.container.classList.add("navigation-container");
+    this.container.classList.add("header");
     this._parentElement.appendChild(this.container);
     this._theme = document.documentElement.dataset.theme;
 
@@ -22,38 +23,49 @@ export default class NavigationView extends View {
     this._darkmodeButton = document.querySelector(".menu__darkmode-btn");
     this._menuContent = document.querySelector(".menu__content");
 
+    this._headerImg = document.querySelector(".header__img");
+
     this._menuButton.addEventListener("click", this.handleMenuButtonEvent.bind(this));
     this._darkmodeButton.addEventListener("click", this.handleSwitchThemeEvent.bind(this));
 
-    // this.initStickyNavObserver();
+    this.initStickyNavObserver();
+    this.handleHomeButton();
   }
 
-  // initStickyNavObserver() {
-  //   const targetNode = document.querySelector(".navigation-container");
+  _clear() {
+    this._parentElement.innerHTML = "";
+  }
 
-  //   const navHeight = this._parentElement.getBoundingClientRect().height;
-  //   const options = {
-  //     root: null,
-  //     rootMargin: `${navHeight}px`,
-  //     threshold: 0,
-  //   };
+  handleHomeButton() {
+    this._headerImg.addEventListener("click", () => window.location.reload());
+  }
 
-  //   this._intersectionObserver = new IntersectionObserver(this.handleStickyNav, options);
-  //   this._intersectionObserver.observe(this._parentElement);
-  //   console.log(targetNode);
-  // }
+  initStickyNavObserver() {
+    const targetNode = document.querySelector("header");
 
-  // handleStickyNav(entries) {
-  //   const nav = document.querySelector("nav");
-  //   const [entry] = entries;
-  //   console.log(entry);
+    const navHeight = this._parentElement.getBoundingClientRect().height;
+    const options = {
+      root: null,
+      rootMargin: `${navHeight}px`,
+      threshold: 0,
+    };
 
-  //   if (!entry.isIntersecting) {
-  //     nav.classList.add("nav--sticky");
-  //   } else {
-  //     // nav.classList.remove("nav--sticky");
-  //   }
-  // }
+    this._intersectionObserver = new IntersectionObserver(this.handleStickyNav, options);
+    this._intersectionObserver.observe(targetNode);
+    console.log(targetNode);
+  }
+
+  handleStickyNav(entries) {
+    const nav = document.querySelector(".header");
+    const [entry] = entries;
+    console.log(entry);
+
+    if (!entry.isIntersecting) {
+      nav.classList.add("header--sticky");
+    } else {
+      nav.classList.remove("header--sticky");
+    }
+  }
 
   handleMenuButtonEvent() {
     this._menuButton.classList.toggle("menu__button--open");
@@ -72,8 +84,6 @@ export default class NavigationView extends View {
     icons.forEach((icon) => icon.classList.toggle("menu__darkmode-icon--active"));
   }
 
-  // menu__button--active
-
   _updateIcon() {
     this._darkmodeButton.innerHTML = this._generateMarkupIcon();
   }
@@ -90,32 +100,35 @@ export default class NavigationView extends View {
 
   _generateMarkup() {
     return `
-    <div class="searchbar-container">
-      <form class="search">
-        <input type="search" class="search__input" placeholder="search a repository" />
-        <button class="search__button" type="submit">
-          <svg class="search__icon">
-            <use href="${icons}#search"></use>
-          </svg>
-        </button>
-      </form>
-    </div>
-    <div class="menu">
-      <button class="menu__button">
-        <span>&nbsp;</span>
-        <span>&nbsp;</span>
-        <span>&nbsp;</span>
-      </button>
-      <div class="menu__content">
-        <button class="menu__darkmode-btn">
-          ${this._generateMarkupIcon()}
-        </button>
-        <ul class="menu__links">
-          <li>About</li>
-        </ul>
+        <div class="searchbar-container header__search">
+          <form class="search">
+            <input type="search" class="search__input" placeholder="search a repository" />
+            <button class="search__button" type="submit">
+              <svg class="search__icon">
+                <use href="${icons}#search"></use>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="header__title">
+          <img class="header__img" src="${logo}" />
+        </div>
+        <nav class="menu header__menu">
+          <button class="menu__button">
+            <span>&nbsp;</span>
+            <span>&nbsp;</span>
+            <span>&nbsp;</span>
+          </button>
+          <div class="menu__content">
+            <button class="menu__darkmode-btn">
+              ${this._generateMarkupIcon()}
+            </button>
+            <ul class="menu__links">
+              <li>About</li>
+            </ul>
+          </div>
+        </nav>
       </div>
-    </div>
-  </div>
     `;
   }
 }

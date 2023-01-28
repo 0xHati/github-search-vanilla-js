@@ -1,10 +1,4 @@
 .menu {
-  // position: relative;
-  @include media(">desktop") {
-    margin-left: auto;
-    margin-right: 5rem;
-  }
-
   &__button {
     z-index: 2;
     position: relative;
@@ -19,9 +13,9 @@
       height: 2px;
 
       background-color: var(--color-primary);
-      position: absolute;
-      top: 0;
-      right: var(--width);
+      // position: absolute;
+      // top: 0;
+      // right: var(--width);
 
       transition: all 0.4s ease-out;
     }
@@ -131,9 +125,27 @@
       display: flex;
     }
   }
+  &__links > *::after {
+    content: "";
+    margin: auto;
+
+    display: block;
+
+    width: 0;
+    border-bottom: 1px solid currentColor;
+    transition: all 0.4s ease;
+  }
+
+  &__links > *:hover::after {
+    width: 100%;
+
+    border-bottom: 1px solid currentColor;
+  }
+
   &__links > *:hover,
   &__links > *:active {
     color: var(--color-accent-3);
+
     cursor: pointer;
   }
 }

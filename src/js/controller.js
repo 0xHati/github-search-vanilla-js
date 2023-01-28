@@ -1,11 +1,9 @@
 import SearchResultView from "./views/searchResultView";
 import * as model from "./model";
-import PaginationView from "./views/paginationView";
 import RepositoryView from "./views/repositoryView";
 import NavigationView from "./views/navigationView";
 import SearchView from "./views/searchView";
 
-//these are the pages of the site
 let searchResultView;
 let repositoryView;
 let navigationView;
@@ -17,6 +15,9 @@ const controlSearchResults = async function (page = 0, isNewSearch = false) {
     if (query === "") return;
 
     searchResultView = new SearchResultView();
+    navigationView = new NavigationView();
+    searchView = navigationView._searchView;
+    searchView.addHandlerSearch(controlSearchResults);
     searchResultView.addHandlerPagination(controlSearchResults);
     searchResultView.addHandlerSort(controlSort);
     searchResultView.addHandlerSelectRepository(controlSelectRepository);
@@ -35,7 +36,6 @@ const controlSearchResults = async function (page = 0, isNewSearch = false) {
   searchResultView.render(model.state.search);
 };
 
-//TODO: is controlSearchResult
 const controlSort = async function (sort) {
   searchResultView.renderSpinner("big");
   await model.searchRepositories(model.state.search.query, 1, sort);
@@ -62,9 +62,6 @@ const controlSelectRepository = async function (owner, name) {
 
   repositoryView._activiesView.addHandlerPagination(controlActivities);
   repositoryView._issuesView.addHandlerPagination(controlIssues);
-
-  // render respository overview
-  // repositoryView.render()
 };
 
 const controlActivities = async function (page) {
@@ -83,11 +80,6 @@ const controlIssues = async function (page) {
 const init = function () {
   // model.loadState();
 
-  //TODO: can use the controlSearch because a new page is basically a new search,
-  // set parameter newSearch to False to make a check in the funciton
-
-  // set data theme to browser
-
   const matches = window.matchMedia("(prefers-color-scheme: dark)");
 
   document.documentElement.setAttribute("data-theme", matches ? "dark" : "light");
@@ -97,9 +89,7 @@ const init = function () {
     document.documentElement.setAttribute("data-theme", currentTheme);
   }
 
-  // searchView = new SearchView();
-  navigationView = new NavigationView();
-  searchView = navigationView._searchView;
+  searchView = new SearchView();
   searchView.addHandlerSearch(controlSearchResults);
 };
 

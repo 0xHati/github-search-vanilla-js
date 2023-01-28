@@ -14,25 +14,15 @@ export default class ChartView extends View {
     this._parentElement.appendChild(this.container);
     this._darkmodeButton = document.querySelector(".menu__darkmode-btn");
     this._darkmodeButton.addEventListener("click", this.handleSwitchThemeEvent.bind(this));
+
+    this._message = "Nothing to show here";
   }
 
-  //TODO: I want that if I had a handler for an event to the chartview
-  // that I dont have to go via the 'parentView' since I would have to make handlers for every parent
-  // need to bind the handler from the controller directly to here
-  // so the controller needs to know this view
   render(data) {
     super.render(data);
     this._chart = document.querySelector("#chart-star-history");
-
     this._loadChart(data.history);
-
-    // this._header = document.querySelector('chart__header')
-    // this.
   }
-
-  // _clear() {
-  //   this._parentElement.innerHTML = "";
-  // }
 
   handleSwitchThemeEvent() {
     const borderColor = getComputedStyle(document.documentElement).getPropertyValue("--color-accent-1");
@@ -50,11 +40,9 @@ export default class ChartView extends View {
 
   _loadChart(data) {
     const formatTooltip = (tooltipItems) => {
-      // console.log(new Date(tooltipItems.raw.x).toLocaleDateString(navigator.language));
       return `${new Date(tooltipItems[0].raw.x).toLocaleDateString(navigator.language)}`;
-      // return `${+tooltipItems.raw.toFixed(0)}%`;
     };
-    //get css vars
+
     const borderColor = getComputedStyle(document.documentElement).getPropertyValue("--color-accent-1");
     const colorPrimary = getComputedStyle(document.documentElement).getPropertyValue("--color-primary");
 
@@ -112,7 +100,6 @@ export default class ChartView extends View {
               unit: "month",
             },
 
-            // suggestedMax: Date.now(),
             grid: {
               display: false,
             },
@@ -194,13 +181,7 @@ export default class ChartView extends View {
       gradient.addColorStop(0.6, "#0683C6");
 
       gradient.addColorStop(1, "#25aef8");
-
-      // gradient.addColorStop(1, "#f37f19");
     }
-
-    // gradient.addColorStop(0.3, "#103888");
-    // gradient.addColorStop(0.6, "#25aef8");
-
     return gradient;
   }
 }

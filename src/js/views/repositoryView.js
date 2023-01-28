@@ -71,28 +71,27 @@ export default class RepositoryView extends View {
     };
 
     this._languagesChart = document.querySelector("#languages-chart");
-    const t = [];
+    const parsedData = [];
     const borderRadius = 5;
     const borderRadiusLeft = { topLeft: borderRadius, bottomLeft: borderRadius };
 
-    const borderRadiusRight = { topRight: borderRadius, bottomRight: borderRadius };
+    const borderRadiusRight = { topLeft: borderRadius, bottomLeft: borderRadius, topRight: borderRadius, bottomRight: borderRadius };
 
-    //show first 85% then other
     let sum = 0;
     for (const [key, value] of Object.entries(data)) {
       const color = this._generateColor();
       if (value >= 5) {
         if (value > 99) {
-          t.push({
+          parsedData.push({
             label: key,
-            data: 100,
+            data: [100],
             borderColor: color,
             backgroundColor: color,
             borderRadius: borderRadiusRight,
           });
           break;
         } else {
-          t.push({
+          parsedData.push({
             label: key,
             data: [value],
             borderColor: color,
@@ -106,38 +105,39 @@ export default class RepositoryView extends View {
     }
     //add others finally
     const color = this._generateColor();
-    //set border on the last item
-    t.push({
-      label: "other",
-      data: [sum],
-      borderColor: color,
-      backgroundColor: color,
-      borderRadius: borderRadiusRight,
-    });
+    console.log(parsedData);
+    console.log(parsedData[0].data[0] === 100);
+    if (parsedData[0].data[0] !== 100) {
+      parsedData.push({
+        label: "other",
+        data: [sum],
+        borderColor: color,
+        backgroundColor: color,
+        borderRadius: borderRadiusRight,
+      });
+    }
 
-    //set border on the first item
-    t[0].borderRadius = borderRadiusLeft;
-    t[0].borderSkipped = false;
-    console.log(t);
+    if (parsedData.length === 0) {
+      console.log("e");
+      parsedData[0].borderRadius = borderRadius;
+      parsedData[0].borderSkipped = false;
+    } else {
+      //set border on the first item
+      parsedData[0].borderRadius = borderRadius;
+      parsedData[0].borderSkipped = false;
+    }
 
     const cfg = {
       type: "bar",
-
       data: {
         labels: [""],
-        datasets: t,
+        datasets: parsedData,
       },
-
       options: {
         indexAxis: "y",
         maintainAspectRatio: false,
         plugins: {
-          // title: {
-          //   text: "Languages used",
-          //   display: true,
-          // },
           legend: {
-            // display: false,
             labels: {
               useBorderRadius: true,
               borderRadius: borderRadius,
@@ -165,6 +165,7 @@ export default class RepositoryView extends View {
             border: {
               display: false,
             },
+            beginAtZero: true,
           },
           y: {
             stacked: true,
@@ -178,6 +179,8 @@ export default class RepositoryView extends View {
             ticks: {
               display: false,
             },
+
+            beginAtZero: true,
           },
         },
       },

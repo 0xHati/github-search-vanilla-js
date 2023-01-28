@@ -1,6 +1,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
+  gap: 4rem;
 
   @include media(">tablet") {
     flex-direction: row;
@@ -28,7 +29,7 @@
 
   &__item {
     margin-bottom: 4rem;
-    // flex: 1;
+    flex: 1;
 
     @include media(">desktop") {
       margin-bottom: 2rem;

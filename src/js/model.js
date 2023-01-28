@@ -59,6 +59,7 @@ const _getRepository = async function (owner, repoName) {
 
 const _getRepositoryLanguages = async function (owner, repoName) {
   const data = await makeRequest(API_URL + `/repos/${owner}/${repoName}/languages`);
+  if (data.length === 0) return;
   const sum = Object.values(data).reduce(function (sum, item) {
     return (sum += item);
   });

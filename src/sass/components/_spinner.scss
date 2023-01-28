@@ -3,7 +3,7 @@
   text-align: center;
 
   svg {
-    fill: var(--color-accent-3);
+    fill: var(--color-accent-3-dark);
     animation: rotate 2s infinite linear;
   }
 
@@ -20,6 +20,11 @@
       width: 6rem;
     }
   }
+}
+
+#gradient {
+  --color-stop: var(--color-primary-1);
+  --color-end: #faed34;
 }
 
 @keyframes rotate {

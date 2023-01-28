@@ -1,7 +1,10 @@
 .activities {
   &__item {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
+    @include media(">tablet") {
+      gap: 2rem;
+    }
   }
 
   &__user-image {

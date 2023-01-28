@@ -1,6 +1,10 @@
 .open-issues {
   &__item {
     flex-wrap: wrap;
+    flex-direction: column;
+    @include media(">tablet") {
+      flex-direction: row;
+    }
   }
 
   &__user-image {

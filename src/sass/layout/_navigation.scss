@@ -1,33 +1,66 @@
-nav {
-  padding: 2rem;
+.header {
+  --padding-sides: 5rem;
 
-  z-index: 99;
-  position: fixed;
-  background-image: var(--background-gradient);
-  top: 0rem;
-  left: 0rem;
-  right: 0rem;
-}
-
-nav.nav--sticky {
-  position: fixed;
-  background-image: var(--background-gradient);
-  top: 0rem;
-  left: 0rem;
-  right: 0rem;
-}
-
-.navigation-container {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 4rem;
 
-  @include media(">desktop") {
+  @include media(">tablet") {
+    padding: 0rem var(--padding-sides);
+  }
+
+  @include media(">big-desktop") {
+    padding: 0rem var(--padding-sides);
+  }
+
+  &__title {
     display: flex;
     align-items: center;
-    position: relative;
-  }
-}
+    order: 2;
 
-.nav--sticky {
+    .header__img {
+      width: 5rem;
+      height: 5rem;
+      cursor: pointer;
+    }
+
+    @include media(">desktop") {
+      order: 1;
+      flex: 1;
+    }
+  }
+
+  &--sticky {
+    position: fixed;
+    background-image: var(--background-gradient);
+    top: 0rem;
+    left: 0rem;
+    right: 0rem;
+    z-index: 99;
+    padding: 1rem 2rem;
+
+    @include media(">tablet") {
+      padding: 1rem calc(var(--padding-sides) + var(--margin-body));
+    }
+
+    @include media(">big-desktop") {
+      padding: 1rem calc(var(--padding-sides) + var(--margin-body));
+    }
+  }
+
+  &__search {
+    order: 1;
+    @include media(">desktop") {
+      order: 2;
+    }
+  }
+
+  &__menu {
+    order: 3;
+    @include media(">desktop") {
+      flex: 1;
+    }
+  }
 }

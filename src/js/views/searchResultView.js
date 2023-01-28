@@ -1,6 +1,5 @@
 import icons from "url:../../img/sprite.svg";
 import { formatNumber } from "../helper";
-import NavigationView from "./navigationView";
 import PaginationView from "./paginationView";
 import View from "./view";
 
@@ -71,14 +70,11 @@ export default class SearchResult extends View {
     <div class="searchresult__info">
       <p><span class="searchresult__amount">${formatter.format(data)}</span>&nbsp;repositories found</p>
       <div class="dropdown--mobile">
-
         <svg class="dropdown__icon">
           <use href="${icons}#sort"></use>
         </svg>
       </div>
-      <div class="dropdown">
-       
-       
+      <div class="dropdown">  
         <div class="searchresult__sort dropdown__label">
           sort: <span class="dropdown__default">best match</span>
           <svg class="dropdown__icon">
@@ -94,7 +90,6 @@ export default class SearchResult extends View {
         </ul>
       </div>
     </div>
-
     `;
   }
 

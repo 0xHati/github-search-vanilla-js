@@ -29,8 +29,7 @@ export default class PaginationView extends View {
       </button>
       ${
         this._showCurrentPage ? `<p class="pagination__current-page">Current page: <span class="pagination__page">${data.currentPage}</span></p>` : ""
-      }
-      
+      }     
       <button class="pagination__next btn ${data.currentPage === data.totalPages ? "btn--disabled" : ""}">
         <svg class="pagination__icon">
             <use href="${icons}#arrow-right-thick"></use>
