@@ -1,5 +1,7 @@
 import { API_URL, RES_PER_PAGE, RES_PER_PAGE_SEARCH, DATA_POINTS, MAX_STAR_HISTORY } from "./config";
 
+const API_TOKEN = process.env.API_TOKEN;
+
 export let state = {
   search: {
     query: "",
@@ -226,7 +228,7 @@ const makeRequest = async function (endpoint) {
     const response = await fetch(endpoint, {
       headers: {
         "Content-Type": "application/vnd.github+json",
-        Authorization: `Bearer ${process.env.API_TOKEN}`,
+        Authorization: `Bearer ${API_TOKEN}`,
       },
     });
     if (response?.ok) {
