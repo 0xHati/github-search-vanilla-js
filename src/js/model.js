@@ -1,6 +1,9 @@
 import { API_URL, RES_PER_PAGE, RES_PER_PAGE_SEARCH, DATA_POINTS, MAX_STAR_HISTORY } from "./config";
 
+import { Octokit } from "@octokit/core";
+
 const API_TOKEN = process.env.API_TOKEN;
+const octokit = new Octokit({ auth: process.env.API_TOKEN });
 
 export let state = {
   search: {
@@ -146,8 +149,6 @@ export const fetchRepoHistory = async function () {
 
   const urls = [];
 
-  let count = 1;
-
   for (let i = 1; i <= requestCount; i++) {
     const currentPage = step >= 100 ? Math.floor((step * i) / 100) : i;
     if (currentPage * 100 >= MAX_STAR_HISTORY) {
@@ -227,18 +228,23 @@ export function getResultByPage(page) {
 
 const makeRequest = async function (endpoint) {
   try {
+    // const responses = await octokit.request("GET /search/repositories?q=test");
+
+    console.log(API_TOKEN);
     const response = await fetch(endpoint, {
       headers: {
         "Content-Type": "application/vnd.github+json",
         Authorization: `Bearer ${API_TOKEN}`,
+        // access_token: `Bearer ${API_TOKEN}`,
       },
     });
+    console.log(response);
     if (response?.ok) {
       return await response.json();
     } else {
       throw new Error(response.status);
     }
   } catch (err) {
-    // throw err;
+    console.log(err);
   }
 };

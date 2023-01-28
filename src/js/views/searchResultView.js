@@ -132,7 +132,7 @@ export default class SearchResult extends View {
       <div class="searchresult__item-right">
         <div class="repository__element">
           <img
-            src="/static/language-icons/${repository.language?.toLowerCase()}-original.svg"
+            src="language-icons/${repository.language?.toLowerCase()}-original.svg"
             alt="language icon"
             class="repository__icon repository__icon--big" onError="this.remove();"/>
           <span class="repository__language">${repository.language ? repository.language : ""}</span>

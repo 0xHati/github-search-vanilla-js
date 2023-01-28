@@ -14,6 +14,7 @@
     "sass": "^1.57.1"
   },
   "dependencies": {
+    "@octokit/core": "^4.2.0",
     "apexcharts": "^3.36.3",
     "chart.js": "^4.2.0",
     "chartjs-adapter-date-fns": "^3.0.0",
