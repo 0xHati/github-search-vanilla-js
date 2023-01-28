@@ -5,7 +5,7 @@ import logo from "url:../../img/github_logo.png";
 import View from "./view";
 
 export default class NavigationView extends View {
-  constructor() {
+  constructor(renderSearch = true) {
     super();
 
     this._parentElement = document.querySelector("header");
@@ -14,10 +14,11 @@ export default class NavigationView extends View {
     this.container.classList.add("header");
     this._parentElement.appendChild(this.container);
     this._theme = document.documentElement.dataset.theme;
+    this._renderSearch = renderSearch;
 
     this.render();
     this.initTheme();
-    this._searchView = new SearchView();
+    if (this._renderSearch) this._searchView = new SearchView();
 
     this._menuButton = document.querySelector(".menu__button");
     this._darkmodeButton = document.querySelector(".menu__darkmode-btn");
@@ -25,11 +26,19 @@ export default class NavigationView extends View {
 
     this._headerImg = document.querySelector(".header__img");
 
-    this._menuButton.addEventListener("click", this.handleMenuButtonEvent.bind(this));
-    this._darkmodeButton.addEventListener("click", this.handleSwitchThemeEvent.bind(this));
+    this.registerEventHandlers();
 
     this.initStickyNavObserver();
     this.handleHomeButton();
+  }
+
+  registerEventHandlers() {
+    this._menuButton.addEventListener("click", this.handleMenuButtonEvent.bind(this));
+    this._darkmodeButton.addEventListener("click", this.handleSwitchThemeEvent.bind(this));
+  }
+
+  render() {
+    super.render(this._renderSearch);
   }
 
   _clear() {
@@ -96,18 +105,24 @@ export default class NavigationView extends View {
     </svg>`;
   }
 
-  _generateMarkup() {
+  _generateMarkupSearch() {
     return `
-        <div class="searchbar-container header__search">
-          <form class="search">
-            <input type="search" class="search__input" placeholder="search a repository" />
-            <button class="search__button" type="submit">
-              <svg class="search__icon">
-                <use href="${icons}#search"></use>
-              </svg>
-            </button>
-          </form>
-        </div>
+    <div class="searchbar-container header__search">
+      <form class="search">
+        <input type="search" class="search__input" placeholder="search a repository" />
+        <button class="search__button" type="submit">
+          <svg class="search__icon">
+            <use href="${icons}#search"></use>
+          </svg>
+        </button>
+      </form>
+    </div>`;
+  }
+
+  _generateMarkup(isRenderSearch) {
+    return `
+    ${isRenderSearch ? this._generateMarkupSearch() : ""} 
+       
         <div class="header__title">
           <img class="header__img" src="${logo}" />
         </div>

@@ -93,6 +93,7 @@ const init = function () {
 
   searchView = new SearchView();
   searchView.addHandlerSearch(controlSearchResults);
+  navigationView = new NavigationView(false);
 };
 
 dotenv.config();

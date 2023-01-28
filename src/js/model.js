@@ -225,7 +225,6 @@ export function getResultByPage(page) {
 
 const makeRequest = async function (endpoint) {
   try {
-    console.log(API_TOKEN);
     const response = await fetch(endpoint, {
       headers: {
         "Content-Type": "application/vnd.github+json",
