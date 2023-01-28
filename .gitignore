@@ -6,6 +6,7 @@
 /out-tsc
 
 .parcel-cache/
+demo-pages/
 
 
 # Runtime data
