@@ -1,5 +1,5 @@
-import { Chart, ChartArea } from "chart.js/auto";
-import { en } from "date-fns/locale";
+import { Chart } from "chart.js/auto";
+import enUS from "date-fns/locale/en-US";
 import "chartjs-adapter-date-fns";
 import View from "./view";
 import icons from "url:../../img/sprite.svg";
@@ -92,7 +92,7 @@ export default class ChartView extends View {
           x: {
             adapters: {
               date: {
-                locale: en,
+                locale: enUS,
               },
             },
             type: "time",

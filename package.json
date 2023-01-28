@@ -8,6 +8,7 @@
   "devDependencies": {
     "os-browserify": "^0.3.0",
     "parcel": "^2.8.2",
+    "parcel-reporter-static-files-copy": "^1.5.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "sass": "^1.57.1"
@@ -18,5 +19,8 @@
     "chartjs-adapter-date-fns": "^3.0.0",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3"
+  },
+  "staticFiles": {
+    "staticPath": "./src/img/static"
   }
 }

@@ -7,7 +7,7 @@ export function formatDate(date) {
 }
 
 export function relativeDate(date) {
-  const long = new Intl.RelativeTimeFormat(navigator.language, { style: "long", numeric: "auto" });
+  const long = new Intl.RelativeTimeFormat("en-US", { style: "long", numeric: "auto" });
   const msWeek = 1000 * 60 * 60 * 24 * 7;
   const msDay = 1000 * 60 * 60 * 24;
   const msMonth = 1000 * 60 * 60 * 24 * 7 * 30;
