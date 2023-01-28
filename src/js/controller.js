@@ -95,5 +95,5 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
 };
 
-dotenv.config();
+// dotenv.config();
 init();

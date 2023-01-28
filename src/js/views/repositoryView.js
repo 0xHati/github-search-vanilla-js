@@ -105,8 +105,7 @@ export default class RepositoryView extends View {
     }
     //add others finally
     const color = this._generateColor();
-    console.log(parsedData);
-    console.log(parsedData[0].data[0] === 100);
+
     if (parsedData[0].data[0] !== 100) {
       parsedData.push({
         label: "other",
@@ -118,7 +117,6 @@ export default class RepositoryView extends View {
     }
 
     if (parsedData.length === 0) {
-      console.log("e");
       parsedData[0].borderRadius = borderRadius;
       parsedData[0].borderSkipped = false;
     } else {

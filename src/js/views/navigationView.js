@@ -52,13 +52,11 @@ export default class NavigationView extends View {
 
     this._intersectionObserver = new IntersectionObserver(this.handleStickyNav, options);
     this._intersectionObserver.observe(targetNode);
-    console.log(targetNode);
   }
 
   handleStickyNav(entries) {
     const nav = document.querySelector(".header");
     const [entry] = entries;
-    console.log(entry);
 
     if (!entry.isIntersecting) {
       nav.classList.add("header--sticky");
