@@ -1,5 +1,7 @@
 import { API_TOKEN, API_URL, RES_PER_PAGE, RES_PER_PAGE_SEARCH, DATA_POINTS, MAX_STAR_HISTORY } from "./config";
 
+API_TOKEN = process.env.API_TOKEN;
+
 export let state = {
   search: {
     query: "",

@@ -33,7 +33,7 @@ body {
   background-image: var(--background-gradient);
   background-size: cover;
   background-repeat: no-repeat;
-  margin: var(--margin-body);
+  padding: var(--margin-body);
 }
 
 body:has(.header--sticky) main {

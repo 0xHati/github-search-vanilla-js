@@ -4,6 +4,8 @@ import RepositoryView from "./views/repositoryView";
 import NavigationView from "./views/navigationView";
 import SearchView from "./views/searchView";
 
+import * as dotenv from "dotenv";
+
 let searchResultView;
 let repositoryView;
 let navigationView;
@@ -93,4 +95,5 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
 };
 
+dotenv.config();
 init();
