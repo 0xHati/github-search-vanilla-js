@@ -3,10 +3,6 @@
     display: flex;
     justify-content: space-between;
     gap: 2rem;
-
-    @include media(">tablet") {
-      gap: 2rem;
-    }
   }
 
   &__user-image {
@@ -20,7 +16,10 @@
     display: flex;
     gap: 2rem;
     align-items: center;
-    flex: 1;
+
+    @include media(">phone") {
+      flex: 1;
+    }
   }
 
   &__name {

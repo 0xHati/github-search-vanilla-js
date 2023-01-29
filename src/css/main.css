@@ -927,11 +927,6 @@ button {
           justify-content: space-between;
   gap: 2rem;
 }
-@media (min-width: 769px) {
-  .activities__item {
-    gap: 2rem;
-  }
-}
 .activities__user-image {
   border-radius: 50%;
   background-color: var(--color-accent-1);
@@ -946,9 +941,13 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+}
+@media (min-width: 641px) {
+  .activities__user {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+  }
 }
 .activities__name {
   display: none;

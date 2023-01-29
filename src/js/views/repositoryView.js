@@ -49,10 +49,12 @@ export default class RepositoryView extends View {
   }
 
   renderInfo(data) {
+    console.log(data);
     let html = "";
     html += this._generateInfoMarkup(data.data);
     this._mainContent.insertAdjacentHTML("afterbegin", html);
     this._renderLanguagesChart(data.languages);
+    document.title = `${data.name} overview`;
   }
 
   _generateColor() {

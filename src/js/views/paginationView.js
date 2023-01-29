@@ -16,13 +16,7 @@ export default class PaginationView extends View {
     if (!btn || btn.classList.contains("btn--disabled")) return;
     if (btn.classList.contains("pagination__previous")) handler(-1);
     if (btn.classList.contains("pagination__next")) handler(1);
-    this.scroll(e);
-  }
-
-  scroll(e) {
-    const parent = e.target.closest(".pagination");
-    console.dir(parent);
-    parent.scrollIntoView(true);
+    this._parentElement.scrollIntoView(true);
   }
 
   _generateMarkup(data) {

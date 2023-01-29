@@ -131,7 +131,6 @@ const _updateActivityName = function (activity) {
       return (activity.typeText = `release ${activity.payload.action}`);
     case "SponsorshipEvent":
       return (activity.typeText = `sponsorship event`);
-
     case "WatchEvent":
       return (activity.typeText = "watching");
   }

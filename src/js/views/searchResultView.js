@@ -18,8 +18,8 @@ export default class SearchResult extends View {
   render(data) {
     super.render(data);
     this._updateSorted(data.sort);
-
     this._paginationView.render(data);
+    document.title = `Search result for ${data.query}`;
   }
 
   addHandlerSelectRepository(handler) {

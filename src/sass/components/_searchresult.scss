@@ -64,9 +64,6 @@
       position: absolute;
     }
 
-    & > * > *:not(:last-child) {
-    }
-
     &-center {
       display: flex;
       align-items: center;
