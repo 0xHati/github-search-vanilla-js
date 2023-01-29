@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./src/css/main.css" />
+    <script type="module" defer src="src/js/controller.js"></script>
+
+    <title>Repository name overview</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="searchbar-container--top">
+        <form class="search search--large">
+          <button class="search__button" type="submit">
+            <svg class="search__icon">
+              <use href="src/img/sprite.svg#search"></use>
+            </svg>
+          </button>
+          <div class="search__input-container">
+            <input type="search" class="search__input" placeholder="search a repository" />
+            <svg class="search__icon-close">
+              <use href="src/img/sprite.svg#close"></use>
+            </svg>
+          </div>
+          <button class="search__button">
+            <svg class="search__icon">
+              <use href="src/img/sprite.svg#options"></use>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </nav>
+    <main>
+      <div class="repository-container">
+        <div class="main-content">
+          <div class="repository">
+            <h1 class="repository__title">Organization name / repository</h1>
+            <p class="repository__description">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis quia odit sunt harum consequatur maxime.
+            </p>
+            <div class="repository__stats">
+              <div class="repository__block">
+                <div class="repository__element">
+                  <svg class="repository__icon">
+                    <use href="src/img/sprite.svg#star"></use>
+                  </svg>
+                  <span>35.k</span>
+                </div>
+                <div class="repository__element">
+                  <svg class="repository__icon">
+                    <use href="src/img/sprite.svg#repo-forked"></use>
+                  </svg>
+                  <span>1.2k</span>
+                </div>
+                <div class="repository__element">
+                  <svg class="repository__icon">
+                    <use href="src/img/sprite.svg#person"></use>
+                  </svg>
+                  <span>2.7k</span>
+                </div>
+              </div>
+              <div class="repository__stat">120 open issues</div>
+              <div class="repository__stat">35% health score</div>
+            </div>
+          </div>
+          <div class="chart">
+            This is the chart
+            <canvas id="star-chart"></canvas>
+          </div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar__item">
+            <h3 class="heading-tertiary">Recent Activity</h3>
+            <ul class="activities">
+              <li class="activities__item">
+                <img src="src/img/person.svg" class="activities__user-image" />
+                <span class="activities__name">John Doe</span>
+                <span class="activities__type">commit lorem</span>
+                <span class="activities__date">14/01/2022</span>
+              </li>
+              <li class="activities__item">
+                <img src="src/img/person.svg" class="activities__user-image" />
+                <span class="activities__name">John Doe</span>
+                <span class="activities__type">commit</span>
+                <span class="activities__date">14/01/2022</span>
+              </li>
+            </ul>
+            <div class="pagination">
+              <button class="pagination__previous btn btn--disabled">
+                <svg class="pagination__icon">
+                  <use href="src/img/sprite.svg#arrow-back-outline"></use>
+                </svg>
+              </button>
+              <button class="pagination__next btn">
+                <svg class="pagination__icon">
+                  <use href="src/img/sprite.svg#arrow-forward-outline"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="sidebar__item">
+            <h3 class="heading-tertiary">Open issues</h3>
+
+            <ul class="open-issues">
+              <li class="open-issues__item">
+                <div class="open-issues__content">
+                  <img src="src/img/person.svg" alt="" class="open-issues__user-image" />
+                  <h4 class="open-issues__title">Lorem ipsum dolor sit amet.</h4>
+                </div>
+                <div class="open-issues__bottom">
+                  <div class="open-issues__tags">
+                    <span class="open-issues__tag">Tag 1</span>
+                    <span class="open-issues__tag">Tag 2</span>
+                    <span class="open-issues__tag">Tag 3</span>
+                  </div>
+                  <div class="open-issues__dates">
+                    <span class="open-issues__date">Created at: 14/01/2022</span>
+                    <span class="open-issues__date">Last updated at: 14/01/2022</span>
+                  </div>
+                </div>
+              </li>
+              <li class="open-issues__item">
+                <div class="open-issues__left">
+                  <img src="src/img/person.svg" alt="" class="open-issues__user-image" />
+                </div>
+                <div class="open-issues__content">
+                  <h4 class="open-issues__title">Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet.</h4>
+                  <div class="open-issues__description">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit eum atque sunt totam fugiat obcaecati! Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Sit eum atque sunt totam fugiat obcaecati!
+                  </div>
+                </div>
+                <div class="open-issues__bottom">
+                  <div class="open-issues__tags">
+                    <span class="open-issues__tag">Tag 1</span>
+                    <span class="open-issues__tag">Tag 2</span>
+                    <span class="open-issues__tag">Tag 3</span>
+                  </div>
+                  <div class="open-issues__dates">
+                    <span class="open-issues__date">Created at: 14/01/2022</span>
+                    <span class="open-issues__date">Last updated at: 14/01/2022</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="pagination">
+              <button class="pagination__previous btn btn--disabled">
+                <svg class="pagination__icon">
+                  <use href="src/img/sprite.svg#arrow-left-thick"></use>
+                </svg>
+              </button>
+              <button class="pagination__next btn">
+                <svg class="pagination__icon">
+                  <use href="src/img/sprite.svg#arrow-right-thick"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
