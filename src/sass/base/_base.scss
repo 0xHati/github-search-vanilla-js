@@ -33,7 +33,15 @@ body {
   background-image: var(--background-gradient);
   background-size: cover;
   background-repeat: no-repeat;
-  padding: var(--margin-body);
+  padding: 8px;
+
+  @include media(">phone") {
+    padding: 2rem;
+  }
+
+  @include media(">tablet") {
+    padding: var(--margin-body);
+  }
 }
 
 body:has(.header--sticky) main {

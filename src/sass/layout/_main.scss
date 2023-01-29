@@ -1,19 +1,19 @@
 .main-content {
-  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 
-  @include media(">tablet") {
-    margin-bottom: 8rem;
+  @include media(">phone") {
+    gap: 3rem;
+
     width: 100%;
   }
 
   @include media(">desktop") {
-    padding-right: 4rem;
+    // padding-right: 4rem;
     flex-basis: 60%;
-    width: 50%;
-  }
-
-  @include media(">big-desktop") {
+    // width: 50%;
+    // width: 75%;
+    gap: 3rem;
   }
 }

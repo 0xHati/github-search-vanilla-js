@@ -1,6 +1,6 @@
 import icons from "url:../../img/sprite.svg";
 import SearchView from "./searchView";
-import logo from "url:../../img/github_logo.png";
+import logo from "url:../../img/github-search-logo.png";
 
 import View from "./view";
 

@@ -1,11 +1,7 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-
-  @include media(">tablet") {
-    flex-direction: row;
-  }
+  gap: 2rem;
 
   @include media(">desktop") {
     flex-direction: column;
@@ -15,20 +11,10 @@
 
   @include media(">big-desktop") {
     flex-direction: column;
-    flex-basis: 25%;
-  }
-
-  & > *:not(:last-child) {
-    @include media(">tablet") {
-      margin-right: 5rem;
-    }
-    @include media(">desktop") {
-      margin-right: 0;
-    }
+    flex-basis: 30%;
   }
 
   &__item {
-    margin-bottom: 4rem;
     flex: 1;
 
     @include media(">desktop") {
@@ -44,18 +30,13 @@
     }
   }
 
-  &__item > .heading-tertiary {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
   &__item > ul > li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 0;
     position: relative;
     border-bottom: 1px solid transparent;
+    padding: 1rem 0;
 
     &:not(:last-child)::after {
       content: "";

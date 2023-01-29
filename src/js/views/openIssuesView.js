@@ -45,19 +45,19 @@ export default class OpenIssuesView extends View {
 
   _generateIssueMarkup(issue) {
     return `
-    <li class="open-issues__item">
-      <a class="link--block" href="${issue.html_url}" target="_blank">
-        <div class="open-issues__content">
-          <img src="${issue.user.avatar_url}" alt="" class="open-issues__user-image" />
-          <h4 class="open-issues__title">${issue.title}</h4> 
-        </div>
-        <div class="open-issues__bottom">
-          <div class="open-issues__tags">
-            ${issue.labels.map(this._generateLabel.bind(this)).join("")}
+    <li class="">
+      <a class="link--block open-issues__item" href="${issue.html_url}" target="_blank">
+        <img src="${issue.user.avatar_url}" alt="" class="open-issues__user-image" />
+        <div class=open-issues__content>
+          <div class="open-issues__left">
+            <h4 class="open-issues__title">${issue.title}</h4> 
+            <div class="open-issues__tags">
+              ${issue.labels.map(this._generateLabel.bind(this)).join("")}
+            </div>
           </div>
-          <div class="open-issues__dates">
-            <span class="open-issues__date">Last update ${relativeDate(issue.updated_at)}</span>
-            <span class="open-issues__date">Open since ${relativeDate(issue.created_at)}</span>
+          <div class="open-issues__right">
+            <span class="open-issues__date">Last updated ${relativeDate(issue.updated_at)}</span>
+            <span class="open-issues__date open-issues__date-open">Open since ${relativeDate(issue.created_at)}</span>
           </div>
         </div>
       </a>  

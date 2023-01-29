@@ -28,6 +28,7 @@ export default class SearchResult extends View {
       if (!repositoryItem) return;
 
       handler(repositoryItem.dataset.owner, repositoryItem.dataset.name);
+      window.scrollTo(0, 0);
     });
   }
 
@@ -103,12 +104,20 @@ export default class SearchResult extends View {
   _generateMarkupItem(repository) {
     return `
     <li class="searchresult__item" data-owner="${repository.owner.login}" data-name="${repository.name}">
-      <div class="searchresult__item-left">
-        <div class="searchresult__title">${repository.full_name}</div>
+     <div class="searchresult__title">${repository.full_name}</div>  
+      <div class="searchresult__item-center">  
         <div class="searchresult__description">
         ${repository.description ? repository.description : ""}
         </div>
-        <div class="searchresult__repository-info">
+        <div class="searchresult__language">
+          <img
+            src="language-icons/${repository.language?.toLowerCase()}-original.svg"
+            alt="language icon"
+            class="searchresult__language-icon" onError="this.remove();"/>
+          <span class="searchresult__language-text">${repository.language ? repository.language : ""}</span>
+        </div>
+      </div>
+      <div class="searchresult__repository-info">
           <div class="repository__element">
             <svg class="repository__icon">
               <use href="${icons}#star"></use>
@@ -128,16 +137,6 @@ export default class SearchResult extends View {
             <span class="respository__watch-count">${formatNumber(repository.watchers)}</span>
           </div>
         </div>
-      </div>
-      <div class="searchresult__item-right">
-        <div class="repository__element">
-          <img
-            src="language-icons/${repository.language?.toLowerCase()}-original.svg"
-            alt="language icon"
-            class="repository__icon repository__icon--big" onError="this.remove();"/>
-          <span class="repository__language">${repository.language ? repository.language : ""}</span>
-        </div>
-      </div>
     </li>
     `;
   }

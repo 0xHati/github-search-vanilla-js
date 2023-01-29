@@ -18,6 +18,11 @@
       width: 2.5rem;
       height: 2.5rem;
       fill: var(--color-primary);
+
+      @include media(">phone") {
+        width: 3rem;
+        height: 3rem;
+      }
     }
 
     @include media(">tablet") {

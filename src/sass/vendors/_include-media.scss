@@ -29,10 +29,11 @@
 ///  $breakpoints: ('phone': 320px);
 ///
 $breakpoints: (
-  "phone": 600px,
-  "tablet": 900px,
+  "phone": 640px,
+  "tablet": 768px,
   "desktop": 1024px,
-  "big-desktop": 1450px,
+  "big-desktop": 1280px,
+  "xl": 1536px,
 ) !default;
 
 ///

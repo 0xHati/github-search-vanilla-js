@@ -1,8 +1,10 @@
 .repository {
-  margin-bottom: 4rem;
-
-  & > * {
+  & > *:not(:last-child) {
     margin-bottom: 2rem;
+
+    @include media(">phone") {
+      margin-bottom: 3rem;
+    }
   }
 
   &__header {
@@ -11,16 +13,7 @@
     border-bottom: solid 2px transparent;
     border-image: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-3)) 1;
     padding-bottom: 1rem;
-  }
-  &__title {
-    font-weight: 500;
-
-    letter-spacing: 0.1rem;
-
-    font-size: 2rem;
-  }
-
-  &__description {
+    gap: 1rem;
   }
 
   &__link {
@@ -28,24 +21,25 @@
   }
 
   &__icon {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2rem;
+    width: 2rem;
     fill: var(--color-secondary);
-    margin-right: 0.8rem;
-    font-size: 1.2rem;
     display: block;
 
     @include media(">tablet") {
-      height: 3rem;
-      width: 3rem;
+      // height: 3rem;
+      // width: 3rem;
     }
 
-    &-small {
-      // height: 2rem;
-      // width: 2rem;
-      // position: absolute;
-      // top: 0;
-      fill: var(--color-accent-1-light);
+    &--dark {
+      fill: var(--color-background-dark-shade);
+      height: 2.5rem;
+      width: 2.5rem;
+
+      @include media(">tablet") {
+        height: 3rem;
+        width: 3rem;
+      }
     }
   }
 
@@ -59,17 +53,10 @@
     font-size: 1.4rem;
     font-weight: 300;
     flex-wrap: wrap;
+    gap: 2rem;
 
     @include media(">tablet") {
-      flex-wrap: nowrap;
-      // justify-content: space-between;
-      align-items: center;
-    }
-
-    @include media(">desktop") {
-    }
-
-    @include media(">big-desktop") {
+      // flex-wrap: nowrap;
     }
   }
   &__block {
@@ -78,15 +65,13 @@
     flex: 0 0 100%;
     align-items: center;
     justify-content: space-around;
-    background-clip: padding-box;
+    // background-clip: padding-box;
     background: inherit;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 400;
-    letter-spacing: 0.2rem;
-
+    letter-spacing: 0.1rem;
     border-radius: 1rem;
     padding: 1rem;
-    margin-bottom: 2rem;
     position: relative;
 
     &::before {
@@ -103,11 +88,9 @@
       mask-composite: destination-out;
       mask-composite: exclude;
     }
-    @include media(">tablet") {
+
+    @include media(">phone") {
       flex: 0 0 40%;
-      margin-top: auto;
-      margin-bottom: auto;
-      margin-right: 4rem;
       gap: 2rem;
     }
 
@@ -121,32 +104,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 0 10%;
-
-    :not(:last-child) {
-      margin-right: 0.5rem;
-    }
+    gap: 1rem;
   }
 
   &__stat {
     display: flex;
-    max-width: fit-content;
     border: solid 1px var(--color-accent-1);
+    align-items: center;
     border-radius: 1rem;
     padding: 0.5rem 1rem;
 
-    &:not(:last-child) {
-      margin-right: 0.8rem;
-
-      @include media(">tablet") {
-        margin-right: 4rem;
-      }
-
-      @include media(">desktop") {
-      }
-
-      @include media(">big-desktop") {
-      }
+    &-topics {
+      word-spacing: 1rem;
     }
 
     &:hover,
@@ -155,23 +124,16 @@
   }
 
   &__languages {
-    width: 80%;
-    // margin-left: -1rem;
+    width: 100%;
     height: 5rem;
 
-    &canvas {
+    @include media(">tablet") {
+      width: 100%;
     }
 
-    @include media(">tablet") {
-      width: 50%;
-    }
-  }
-
-  &__language {
-    display: none;
-
-    @include media(">tablet") {
-      display: unset;
+    & > canvas {
+      width: 100% !important;
+      height: 100% !important;
     }
   }
 }

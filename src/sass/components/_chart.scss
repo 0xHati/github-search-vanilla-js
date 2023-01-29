@@ -1,19 +1,22 @@
 .chart {
-  width: 80%;
-  height: 80%;
-
-  //without this the chart doesnt grow again after shrinking
-  & canvas {
-    @include media("<desktop") {
-      width: 100% !important;
-      height: 100% !important;
-    }
-  }
-
   &__header {
     display: flex;
     gap: 0.5rem;
     justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  &__wrapper {
+    height: 70vh;
+
+    @include media(">big-desktop") {
+      height: 50vh;
+    }
+
+    & > canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
   }
 
   &__info {

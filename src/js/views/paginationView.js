@@ -16,12 +16,17 @@ export default class PaginationView extends View {
     if (!btn || btn.classList.contains("btn--disabled")) return;
     if (btn.classList.contains("pagination__previous")) handler(-1);
     if (btn.classList.contains("pagination__next")) handler(1);
-    this._parentElement.scrollIntoView(true);
+    this.scroll(e);
+  }
+
+  scroll(e) {
+    const parent = e.target.closest(".pagination");
+    console.dir(parent);
+    parent.scrollIntoView(true);
   }
 
   _generateMarkup(data) {
     return `
-    <div class="pagination">
       <button class="pagination__previous btn ${data.currentPage === 1 ? "btn--disabled" : ""}">
         <svg class="pagination__icon">
             <use href="${icons}#arrow-left-thick"></use>
@@ -35,7 +40,6 @@ export default class PaginationView extends View {
             <use href="${icons}#arrow-right-thick"></use>
         </svg>
       </button>
-    </div>
     `;
   }
 }

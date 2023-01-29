@@ -1,7 +1,9 @@
 .activities {
   &__item {
     display: flex;
-    gap: 1rem;
+    justify-content: space-between;
+    gap: 2rem;
+
     @include media(">tablet") {
       gap: 2rem;
     }
@@ -14,21 +16,30 @@
     height: 3rem;
   }
 
-  &__name {
+  &__user {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
     flex: 1;
+  }
+
+  &__name {
+    display: none;
+
+    @include media(">phone") {
+      display: initial;
+    }
   }
 
   &__type {
     color: var(--color-background-dark-shade);
     font-weight: 400;
-    // flex: 1;
-    text-align: center;
     flex: 1;
   }
   &__date {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 200;
     text-align: end;
-    flex: 1;
+    // flex: 1;
   }
 }

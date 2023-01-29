@@ -1,6 +1,7 @@
 .searchresult {
   display: flex;
   flex-direction: column;
+  scroll-margin-top: 5rem;
 
   @include media(">tablet") {
     flex-basis: 75%;
@@ -26,13 +27,33 @@
     }
   }
 
+  &__language {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    &-icon {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    &-text {
+      display: none;
+      @include media(">phone") {
+        display: unset;
+      }
+    }
+  }
+
   &__item {
     display: flex;
     position: relative;
     justify-content: space-between;
     border-bottom: 1px solid transparent;
     margin-bottom: 1rem;
-    gap: 1rem;
+
+    gap: 1.5rem;
     flex-wrap: wrap;
     cursor: pointer;
 
@@ -44,45 +65,44 @@
     }
 
     & > * > *:not(:last-child) {
-      margin-bottom: 1.5rem;
     }
 
-    @include media(">tablet") {
-      margin-bottom: 2rem;
-      gap: 4rem;
-    }
-
-    &-left {
-      flex: 1;
-    }
-
-    &-right {
-      align-self: center;
-      flex: 0 0 15%;
+    &-center {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-basis: 100%;
+      gap: 1rem;
     }
   }
 
   &__title {
     font-weight: 500;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    width: 100%;
+    word-break: break-word;
   }
   &__description {
     font-weight: 300;
+    text-align: left;
+    word-break: break-word;
   }
 
   &__repository-info {
+    gap: 2rem;
     display: flex;
-    gap: 1rem;
-    padding-bottom: 1.5rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 
-    @include media(">tablet") {
-      padding-bottom: 2rem;
+    & > * {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include media(">phone") {
       gap: 4rem;
     }
   }
-}
-
-.repository__icon--big {
-  width: 4rem;
-  height: 4rem;
 }

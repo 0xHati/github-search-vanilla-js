@@ -7,26 +7,22 @@
   align-items: center;
   margin-bottom: 4rem;
 
-  @include media(">tablet") {
-    padding: 0rem var(--padding-sides);
-  }
-
-  @include media(">big-desktop") {
-    padding: 0rem var(--padding-sides);
-  }
-
   &__title {
     display: flex;
     align-items: center;
+
     order: 2;
 
     .header__img {
-      width: 5rem;
       height: 5rem;
       cursor: pointer;
+
+      @include media(">tablet") {
+        height: 7rem;
+      }
     }
 
-    @include media(">desktop") {
+    @include media(">tablet") {
       order: 1;
       flex: 1;
     }
@@ -40,26 +36,18 @@
     right: 0rem;
     z-index: 99;
     padding: 1rem 2rem;
-
-    @include media(">tablet") {
-      padding: 1rem calc(var(--padding-sides) + var(--margin-body));
-    }
-
-    @include media(">big-desktop") {
-      padding: 1rem calc(var(--padding-sides) + var(--margin-body));
-    }
   }
 
   &__search {
     order: 1;
-    @include media(">desktop") {
+    @include media(">tablet") {
       order: 2;
     }
   }
 
   &__menu {
     order: 3;
-    @include media(">desktop") {
+    @include media(">tablet") {
       flex: 1;
     }
   }

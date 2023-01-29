@@ -39,7 +39,7 @@ export const searchRepositories = async function (query, page = 1, sort = "best-
   );
 
   state.search.totalCount = data.total_count;
-  state.search.totalPages = Math.ceil(state.search.totalCount / RES_PER_PAGE);
+  state.search.totalPages = Math.ceil(state.search.totalCount / RES_PER_PAGE_SEARCH);
 
   state.search.result.push({ page: state.search.currentPage, data: data.items });
   state.search.currentPageResult = data.items;
@@ -61,7 +61,7 @@ const _getRepository = async function (owner, repoName) {
 
 const _getRepositoryLanguages = async function (owner, repoName) {
   const data = await makeRequest(API_URL + `/repos/${owner}/${repoName}/languages`);
-  if (data.length === 0) return;
+  if (Object.keys(data).length === 0) return;
   const sum = Object.values(data).reduce(function (sum, item) {
     return (sum += item);
   });
@@ -74,7 +74,7 @@ const _getRepositoryLanguages = async function (owner, repoName) {
 };
 
 const _getRepositoryTopics = async function (owner, repoName) {
-  const data = makeRequest(API_URL + `/repos/${owner}/${repoName}/topics`);
+  const data = await makeRequest(API_URL + `/repos/${owner}/${repoName}/topics`);
   state.repository.topics = data;
 };
 
@@ -84,6 +84,7 @@ export const searchIssues = async function (page = 1) {
     API_URL + `/repos/${state.repository.data.owner.login}/${state.repository.data.name}/issues?per_page=${RES_PER_PAGE}&page=${page}`
   );
   state.repository.issues.data = data;
+  console.log(state.repository.issues.data);
 };
 
 export const searchRecentActivity = async function (page = 1) {

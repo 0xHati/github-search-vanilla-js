@@ -62,6 +62,7 @@ export default class ChartView extends View {
         parsing: false,
         normalized: true,
         animation: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             display: false,
@@ -147,7 +148,10 @@ export default class ChartView extends View {
           : ""
       }
       </div>
-    <canvas id="chart-star-history"></canvas>
+      <div class="chart__wrapper">
+        <canvas id="chart-star-history"></canvas>
+
+      </div>
     `;
   }
 

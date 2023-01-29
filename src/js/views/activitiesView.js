@@ -46,8 +46,10 @@ export default class ActivitiesView extends View {
   _generateActivityMarkup(activity) {
     return `
     <li class="activities__item">
+      <div class="activities__user">
         <img src="${activity.actor.avatar_url}" class="activities__user-image" />
         <span class="activities__name">${activity.actor.display_login}</span>
+      </div>
         <span class="activities__type">${activity.typeText}</span>
         <span class="activities__date">${relativeDate(activity.created_at)}</span>
     </li>

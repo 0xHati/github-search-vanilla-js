@@ -42,7 +42,7 @@
       transform: rotate(45deg);
     }
 
-    @include media(">desktop") {
+    @include media(">tablet") {
       display: none;
     }
   }
@@ -105,11 +105,11 @@
     flex-direction: column;
     align-items: center;
     padding: 10rem;
-    gap: 1rem;
+    gap: 4rem;
     transition: translate 1s ease-in;
     display: none;
 
-    @include media(">desktop") {
+    @include media(">tablet") {
       flex-direction: row-reverse;
       position: relative;
       height: initial;

@@ -8,7 +8,7 @@
   padding: 0.1rem 1rem;
 
   &__current-page {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     word-spacing: 0.2rem;
     font-weight: 300;
   }
@@ -21,9 +21,14 @@
 
   &__icon {
     display: block;
-    width: 2rem;
-    height: 2rem;
-    fill: #25aef8;
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: var(--color-accent-3);
     margin: auto;
+
+    @include media(">tablet") {
+      // width: 3rem;
+      // height: 3rem;
+    }
   }
 }

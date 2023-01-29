@@ -1,10 +1,10 @@
 .searchbar-container {
-  @include media(">desktop") {
+  @include media(">tablet") {
     width: 50%;
   }
 
   &:focus-within {
-    @include media("<desktop") {
+    @include media("<tablet") {
       width: 100%;
 
       & ~ * {
@@ -14,13 +14,16 @@
   }
 
   &--home {
+    --search-height: 4rem;
+
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 75%;
+    width: 95%;
+    height: var(--search-height);
 
-    @include media(">desktop") {
+    @include media(">tablet") {
       width: 50%;
     }
 
@@ -33,14 +36,11 @@
       height: 100%;
       width: 100%;
 
-      // &:focus-within {
-      //   width: 75%;
-      // }
-
       & > .search__input {
         display: flex;
         opacity: 1;
         font-size: 1.8rem;
+        text-align: center;
       }
     }
   }
@@ -48,14 +48,18 @@
 
 .search {
   --size: 3rem;
+  --search-height: 4rem;
+
   display: flex;
   height: calc(var(--size) + 4px);
   width: calc(var(--size) + 4px);
+  height: var(--search-height);
+
   position: relative;
   transition: width 0.4s ease-out;
   overflow: hidden;
 
-  @include media(">desktop") {
+  @include media(">tablet") {
     border-radius: 1rem;
     border: 1px solid var(--color-accent-1);
     align-items: center;
@@ -80,7 +84,7 @@
     font-size: 1.6rem;
     text-align: center;
 
-    @include media(">desktop") {
+    @include media(">tablet") {
       opacity: 1;
       position: relative;
       cursor: initial;
@@ -109,30 +113,28 @@
     margin-left: auto;
     cursor: pointer;
     z-index: 15;
-    // pointer-events: none;
     display: flex;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    margin-right: 2px;
+    align-items: center;
 
-    @include media(">desktop") {
+    @include media(">tablet") {
       display: flex;
     }
   }
 
   &:focus-within {
-    // width: 100%;
+    width: 100%;
     border-radius: 1rem;
     border: 1px solid var(--color-accent-1-light);
     z-index: 5;
     background-image: var(--background-gradient);
+
     .search__input {
       opacity: 1;
-      width: calc(100% - var(--size));
+      width: calc(100% - var(--size) - 1rem);
       cursor: initial;
     }
 
-    @include media(">desktop") {
+    @include media(">tablet") {
       background-image: initial;
     }
   }

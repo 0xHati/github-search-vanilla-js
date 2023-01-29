@@ -87,7 +87,7 @@ export default class RepositoryView extends View {
             data: [100],
             borderColor: color,
             backgroundColor: color,
-            borderRadius: borderRadiusRight,
+            borderRadius: borderRadius,
           });
           break;
         } else {
@@ -116,12 +116,12 @@ export default class RepositoryView extends View {
       });
     }
 
-    if (parsedData.length === 0) {
+    if (parsedData.length === 1) {
       parsedData[0].borderRadius = borderRadius;
       parsedData[0].borderSkipped = false;
     } else {
       //set border on the first item
-      parsedData[0].borderRadius = borderRadius;
+      parsedData[0].borderRadius = borderRadiusLeft;
       parsedData[0].borderSkipped = false;
     }
 
@@ -205,7 +205,7 @@ export default class RepositoryView extends View {
     <div class="repository">
       <div class="repository__header">
         <a href="${data.html_url}" class="repository__link" target="_blank">
-          <svg class="repository__icon repository__icon-small">
+          <svg class="repository__icon repository__icon--dark">
               <use href="${icons}#github"></use>
             </svg>
         </a>  
@@ -236,8 +236,8 @@ export default class RepositoryView extends View {
           <span class="respository__watch-count">${formatNumber(data.watchers)}</span>
         </div>
       </div>
+        <div class="repository__stat repository__stat-topics">Topics: ${data.topics.join(", ")}</div>
         <div class="repository__stat">${data.open_issues_count} open issues</div>
-        <div class="repository__stat">Topics: ${data.topics.join(", ")}</div>
       </div>
       <div class="repository__languages">
       <canvas id="languages-chart"></canvas>

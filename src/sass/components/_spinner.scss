@@ -9,15 +9,25 @@
 
   &--normal {
     svg {
-      height: 4rem;
-      width: 4rem;
+      height: 2.5rem;
+      width: 2.5rem;
+
+      @include media(">phone") {
+        height: 5rem;
+        width: 5rem;
+      }
     }
   }
 
   &--big {
     svg {
-      height: 6rem;
-      width: 6rem;
+      height: 4rem;
+      width: 4rem;
+
+      @include media(">phone") {
+        height: 6rem;
+        width: 6rem;
+      }
     }
   }
 }
