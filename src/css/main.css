@@ -69,12 +69,22 @@ body {
 }
 @media (min-width: 641px) {
   body {
-    padding: 2rem;
+    padding: 2rem 2rem;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 1025px) {
   body {
-    padding: var(--margin-body);
+    padding: 2rem 4rem;
+  }
+}
+@media (min-width: 1281px) {
+  body {
+    padding: 2rem 8rem;
+  }
+}
+@media (min-width: 1537px) {
+  body {
+    padding: 2rem 12rem;
   }
 }
 

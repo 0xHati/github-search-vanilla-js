@@ -36,11 +36,19 @@ body {
   padding: 8px;
 
   @include media(">phone") {
-    padding: 2rem;
+    padding: 2rem 2rem;
   }
 
-  @include media(">tablet") {
-    padding: var(--margin-body);
+  @include media(">desktop") {
+    padding: 2rem 4rem;
+  }
+
+  @include media(">big-desktop") {
+    padding: 2rem 8rem;
+  }
+
+  @include media(">xl") {
+    padding: 2rem 12rem;
   }
 }
 

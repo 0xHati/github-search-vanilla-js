@@ -137,7 +137,7 @@ export default class NavigationView extends View {
               ${this._generateMarkupIcon()}
             </button>
             <ul class="menu__links">
-              <li>About</li>
+              <li><a href="https://github.com/Hati0x/github-search-vanilla-js" target="_blank">About</a></li>
             </ul>
           </div>
         </nav>
