@@ -35,6 +35,10 @@ I'm using an MVC architecture.
 
 Install the required packages with `npm install` and run with `npm start`
 
+Make an env file in the root folder.
+
+`API_TOKEN=YOUR_API_TOKEN`
+
 ## Deployment
 
 ```
