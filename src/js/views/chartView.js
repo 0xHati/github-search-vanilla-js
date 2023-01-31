@@ -135,7 +135,7 @@ export default class ChartView extends View {
   _generateMarkup() {
     return `
     <div class="chart__header">
-      <h3 class="heading-tertiary chart__title">Stargazers over time</h3>
+      <h3 class="heading-tertiary chart__title">Stars over time</h3>
       ${
         this._data.data.stargazers_count > 40000
           ? `
