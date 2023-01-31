@@ -12,6 +12,7 @@ With this project I demonstrate knowledge of the following things:
 
 - ES6 javascript
 - advanced modern CSS/Sass
+- BEM
 - Webpack/parcel
 - npm
 - working with APIs
@@ -19,7 +20,8 @@ With this project I demonstrate knowledge of the following things:
 - ChartJS
 - git
 
-# Features:
+
+# Features
 
 - Search github projects
 - Chart of the programming languages used
