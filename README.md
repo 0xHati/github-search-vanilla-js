@@ -12,6 +12,7 @@ With this project I demonstrate knowledge of the following things:
 
 - ES6 javascript
 - advanced modern CSS/Sass
+- BEM
 - Webpack/parcel
 - npm
 - working with APIs
@@ -19,7 +20,8 @@ With this project I demonstrate knowledge of the following things:
 - ChartJS
 - git
 
-# Features:
+
+# Features
 
 - Search github projects
 - Chart of the programming languages used
@@ -34,6 +36,10 @@ I'm using an MVC architecture.
 ### Development
 
 Install the required packages with `npm install` and run with `npm start`
+
+Make an env file in the root folder.
+
+`API_TOKEN=YOUR_API_TOKEN`
 
 ## Deployment
 
