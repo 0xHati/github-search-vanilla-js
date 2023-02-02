@@ -80,8 +80,6 @@ const controlIssues = async function (page) {
 };
 
 const init = function () {
-  // model.loadState();
-
   const matches = window.matchMedia("(prefers-color-scheme: dark)");
 
   document.documentElement.setAttribute("data-theme", matches ? "dark" : "light");

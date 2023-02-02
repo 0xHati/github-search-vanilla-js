@@ -87,6 +87,7 @@ export default class NavigationView extends View {
   handleSwitchThemeEvent() {
     this._theme = this._theme === "light" ? "dark" : "light";
     document.documentElement.dataset.theme = this._theme;
+    localStorage.setItem("theme", this._theme);
     const icons = document.querySelectorAll(`.menu__darkmode-icon`);
     icons.forEach((icon) => icon.classList.toggle("menu__darkmode-icon--active"));
   }
