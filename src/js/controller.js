@@ -88,6 +88,7 @@ const init = function () {
   if (currentTheme) {
     document.documentElement.setAttribute("data-theme", currentTheme);
   }
+  console.log(currentTheme);
 
   searchView = new SearchView();
   searchView.addHandlerSearch(controlSearchResults);

@@ -80,7 +80,7 @@ export default class NavigationView extends View {
   }
 
   initTheme() {
-    const icon = document.querySelector(`.menu__darkmode-icon--${this._theme}`);
+    const icon = document.querySelector(`.menu__darkmode-icon--${this._theme === "light" ? "dark" : "light"}`);
     icon.classList.add("menu__darkmode-icon--active");
   }
 
