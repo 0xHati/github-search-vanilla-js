@@ -11,15 +11,18 @@ export let state = {
     totalPages: "",
     totalCount: "",
     sort: "best-match",
+    hasNextPage: true,
   },
   repository: {
     data: "",
     recentActivity: {
       currentPage: 1,
       data: {},
+      hasNextPage: true,
     },
     issues: {
       currentPage: 1,
+      hasNextPage: true,
       data: "",
     },
     history: [],
@@ -40,9 +43,9 @@ export const searchRepositories = async function (query, page = 1, sort = "best-
 
   state.search.totalCount = data.total_count;
   state.search.totalPages = Math.ceil(state.search.totalCount / RES_PER_PAGE_SEARCH);
-
   state.search.result.push({ page: state.search.currentPage, data: data.items });
   state.search.currentPageResult = data.items;
+  if (state.search.totalPages <= state.search.currentPage) state.search.hasNextPage = false;
 
   saveState();
 };
@@ -83,8 +86,13 @@ export const searchIssues = async function (page = 1) {
   const data = await makeRequest(
     API_URL + `/repos/${state.repository.data.owner.login}/${state.repository.data.name}/issues?per_page=${RES_PER_PAGE}&page=${page}`
   );
+
+  const nextPage = await makeRequest(
+    API_URL + `/repos/${state.repository.data.owner.login}/${state.repository.data.name}/issues?per_page=${RES_PER_PAGE}&page=${page + 1}`
+  );
+
+  if (nextPage.length === 0 || data.length < RES_PER_PAGE) state.repository.issues.hasNextPage = false;
   state.repository.issues.data = data;
-  console.log(state.repository.issues.data);
 };
 
 export const searchRecentActivity = async function (page = 1) {
@@ -95,6 +103,14 @@ export const searchRecentActivity = async function (page = 1) {
       `/repos/${state.repository.data.owner.login}/${state.repository.data.name}/events?per_page=${RES_PER_PAGE}&page=${page}
   `
   );
+
+  const nextPage = await makeRequest(
+    API_URL +
+      `/repos/${state.repository.data.owner.login}/${state.repository.data.name}/events?per_page=${RES_PER_PAGE}&page=${page + 1}
+  `
+  );
+
+  if (nextPage.length === 0 || data.length < RES_PER_PAGE) state.repository.recentActivity.hasNextPage = false;
   state.repository.recentActivity.data = data;
   state.repository.recentActivity.data.map(_updateActivityName.bind(this));
 };

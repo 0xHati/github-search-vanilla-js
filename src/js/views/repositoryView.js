@@ -67,6 +67,7 @@ export default class RepositoryView extends View {
   }
 
   _renderLanguagesChart(data) {
+    if (!data) return;
     const formatTooltip = (tooltipItems) => {
       return `${+tooltipItems.raw.toFixed(0)}%`;
     };

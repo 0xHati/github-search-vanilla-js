@@ -15,13 +15,16 @@ export default class ChartView extends View {
     this._darkmodeButton = document.querySelector(".menu__darkmode-btn");
     this._darkmodeButton.addEventListener("click", this.handleSwitchThemeEvent.bind(this));
 
-    this._message = "Nothing to show here";
+    this._message = "No star history for this repository.";
   }
 
   render(data) {
     super.render(data);
     this._chart = document.querySelector("#chart-star-history");
-    this._loadChart(data.history);
+    if (data.history.length === 0) super.renderMessage(this._message);
+    else {
+      this._loadChart(data.history);
+    }
   }
 
   handleSwitchThemeEvent() {
