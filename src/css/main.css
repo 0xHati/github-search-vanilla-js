@@ -761,7 +761,7 @@ button {
   margin-bottom: 2rem;
 }
 .chart__wrapper {
-  height: 70vh;
+  height: 40vh;
 }
 @media (min-width: 1281px) {
   .chart__wrapper {
