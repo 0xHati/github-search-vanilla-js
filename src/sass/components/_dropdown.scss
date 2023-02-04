@@ -1,6 +1,5 @@
 .dropdown {
   background-color: inherit;
-  cursor: pointer;
   z-index: 1;
   position: absolute;
   right: 0;
@@ -9,9 +8,9 @@
   &--mobile {
     &:hover + .dropdown > .dropdown__list,
     &:active + .dropdown > .dropdown__list {
-      display: block;
       opacity: 1;
       pointer-events: all;
+      visibility: visible;
     }
 
     & > .dropdown__icon {
@@ -37,22 +36,19 @@
   &__list {
     border: 1px solid var(--color-accent-1);
     border-radius: 1rem;
-    display: none;
+    visibility: hidden;
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s ease-in;
     background-image: var(--background-gradient);
 
-    @include media(">tablet") {
-      display: block;
+    &:hover,
+    &:active {
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
+      cursor: pointer;
     }
-  }
-
-  &:hover &__list,
-  &:active &__list {
-    display: block;
-    opacity: 1;
-    pointer-events: all;
   }
 
   &__default {
@@ -61,6 +57,7 @@
 
   &__label {
     display: none;
+    cursor: pointer;
 
     @include media(">tablet") {
       display: flex;
@@ -68,6 +65,14 @@
       border: 1px solid var(--color-accent-1);
       border-radius: 1rem;
       padding: 0.5rem 1rem;
+    }
+
+    &:hover + .dropdown__list,
+    &:active + .dropdown__list {
+      display: block;
+      opacity: 1;
+      pointer-events: all;
+      visibility: visible;
     }
   }
 
@@ -91,8 +96,5 @@
     &--selected {
       color: var(--color-accent-3);
     }
-  }
-
-  &__default {
   }
 }
