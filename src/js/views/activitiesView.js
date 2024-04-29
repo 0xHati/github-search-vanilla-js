@@ -1,6 +1,6 @@
 import PaginationView from "./paginationView";
 import View from "./view";
-import { formatDate, relativeDate } from "../helper";
+import { relativeDate } from "../helper";
 
 export default class ActivitiesView extends View {
   constructor(parentElement) {
